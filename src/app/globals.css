@@ -84,6 +84,71 @@ html {
   transform: translateY(0);
 }
 
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-slide-in {
+  animation: slideInFromTop 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #4A443B 0%,
+    #4A443B 20%,
+    #8B7F6F 50%,
+    #4A443B 80%,
+    #4A443B 100%
+  );
+  background-size: 1000px 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShimmer 3s infinite;
+}
+
+.animate-slide-in-1 {
+  animation-delay: 0.1s;
+}
+
+.animate-slide-in-2 {
+  animation-delay: 0.2s;
+}
+
+.animate-slide-in-3 {
+  animation-delay: 0.3s;
+}
+
+.animate-slide-in-4 {
+  animation-delay: 0.4s;
+}
+
+.animate-slide-in-5 {
+  animation-delay: 0.5s;
+}
+
+.animate-slide-in-6 {
+  animation-delay: 0.6s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

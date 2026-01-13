@@ -707,14 +707,11 @@ export default function Home() {
           <div className="px-1 py-2 text-center sm:px-2">
             <div className="flex items-center justify-center gap-3">
               <h1
-                className="relative z-0 inline-block font-display text-5xl font-semibold tracking-tight sm:text-7xl"
+                className="relative z-0 inline-block text-5xl font-bold tracking-tight sm:text-7xl animate-text-shimmer"
                 style={{
-                  fontFamily: '"StretchPro", var(--font-display), ui-sans-serif, system-ui',
-                  color: "#5B3A29",
-                  letterSpacing: "0.08em",
-                  opacity: 1,
-                  textShadow:
-                    "0 1px 0 rgba(255,255,255,0.12), 0 10px 22px rgba(0,0,0,0.18)",
+                  fontFamily: '"Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif',
+                  letterSpacing: "0.15em",
+                  fontWeight: 700,
                 }}
               >
                 {T.title}
@@ -752,19 +749,19 @@ export default function Home() {
         )}
 
         <section aria-label="Status" className="mt-4 grid gap-3 sm:grid-cols-3">
-          <div className="rounded-2xl border border-border-subtle/30 bg-white/65 px-5 py-4 shadow-lg backdrop-blur-sm">
+          <div className="animate-slide-in animate-slide-in-1 rounded-2xl border border-border-subtle/30 bg-white/65 px-5 py-4 shadow-lg backdrop-blur-sm">
             <div className="text-xs font-semibold text-gov-brown">{isPremium ? "Premium" : T.freeRemaining}</div>
             <div className="mt-1 text-lg font-semibold tracking-tight text-foreground">
               {isPremium ? "Aktiv" : remaining != null ? remaining : "—"}
             </div>
           </div>
-          <div className="rounded-2xl border border-border-subtle/30 bg-white/65 px-5 py-4 shadow-lg backdrop-blur-sm">
+          <div className="animate-slide-in animate-slide-in-2 rounded-2xl border border-border-subtle/30 bg-white/65 px-5 py-4 shadow-lg backdrop-blur-sm">
             <div className="text-xs font-semibold text-gov-brown">{T.language}</div>
             <div className="mt-1 text-lg font-semibold tracking-tight text-foreground">
               {LANGUAGES.find((l) => l.value === targetLanguage)?.label ?? targetLanguage}
             </div>
           </div>
-          <div className="rounded-2xl border border-border-subtle/30 bg-white/65 px-5 py-4 shadow-lg backdrop-blur-sm">
+          <div className="animate-slide-in animate-slide-in-3 rounded-2xl border border-border-subtle/30 bg-white/65 px-5 py-4 shadow-lg backdrop-blur-sm">
             <div className="text-xs font-semibold text-gov-brown">Privacy</div>
             <div className="mt-1 text-lg font-semibold tracking-tight text-foreground">Session only</div>
           </div>
@@ -773,7 +770,7 @@ export default function Home() {
         <main id="main" className="mt-6 grid gap-6">
           <section
             className={
-              "rounded-3xl border border-border-subtle/30 bg-white/65 p-6 shadow-xl backdrop-blur-sm transition-all duration-200 sm:p-8 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-2xl " +
+              "animate-slide-in animate-slide-in-4 rounded-3xl border border-border-subtle/30 bg-white/65 p-6 shadow-xl backdrop-blur-sm transition-all duration-200 sm:p-8 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-2xl " +
               (isDragging
                 ? "border-gov-blue/60 ring-4 ring-gov-blue/10"
                 : "hover:border-gov-blue/40")
@@ -877,7 +874,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="grid gap-4 rounded-3xl border border-border-subtle/30 bg-white/65 p-6 shadow-xl backdrop-blur-sm transition-all duration-200 sm:p-8 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-2xl">
+          <section className="animate-slide-in animate-slide-in-5 grid gap-4 rounded-3xl border border-border-subtle/30 bg-white/65 p-6 shadow-xl backdrop-blur-sm transition-all duration-200 sm:p-8 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-2xl">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <h2 className="text-base font-semibold text-foreground">{T.language}</h2>
               <div className="text-xs font-medium text-gov-brown">
@@ -942,7 +939,7 @@ export default function Home() {
             )}
 
             {showPremium && (
-              <div className="rounded-2xl border border-border-subtle/30 bg-white/65 p-5 shadow-sm backdrop-blur-sm">
+              <div className="animate-slide-in animate-slide-in-6 rounded-2xl border border-border-subtle/30 bg-white/65 p-5 shadow-sm backdrop-blur-sm">
                 <div className="text-sm font-semibold text-foreground">{T.premiumTitle}</div>
                 <div className="mt-1 text-sm leading-6 text-gov-brown">{T.premiumDesc}</div>
                 <button

@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
       "font-src 'self' data:",
       "style-src 'self' 'unsafe-inline'",
       // OCR/PDF worker + wasm
-      "script-src 'self' 'unsafe-eval' 'wasm-unsafe-eval' blob:",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob:",
       "worker-src 'self' blob:",
       "connect-src 'self'",
     ].join("; ");

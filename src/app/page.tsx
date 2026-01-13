@@ -692,81 +692,75 @@ export default function Home() {
   }
 
   return (
-    <div style={{ backgroundColor: 'var(--primary-bg)', color: 'var(--text-primary)' }} dir={uiDir}>
+    <div className="min-h-screen bg-light-bg text-light-text" dir={uiDir}>
       <a className="skip-link" href="#main">
         Zum Inhalt
       </a>
 
-      {/* Subtler background gradients */}
-      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" style={{ backgroundColor: 'var(--primary-bg)' }}>
-        <div 
-          className="absolute -top-40 right-20 h-96 w-96 rounded-full blur-3xl opacity-30" 
-          style={{ backgroundColor: 'var(--accent-light)' }} 
-        />
-      </div>
+      {/* Progress indicator */}
+      {progressPercent > 0 && (
+        <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-light-border">
+          <div
+            className="h-full bg-gradient-to-r from-brand-blue to-brand-violet transition-all duration-500"
+            style={{ width: `${progressPercent}%` }}
+          />
+        </div>
+      )}
 
-      {/* Main content container */}
-      <div className="mx-auto w-full max-w-4xl px-5 py-20 sm:py-28" style={{ padding: '56px 20px' }}>
+      {/* Main content */}
+      <div className="mx-auto w-full max-w-5xl px-6 py-16 md:py-24">
         
-        {/* Hero Section - Minimal & Bold */}
-        <header className="mb-20 text-center" style={{ marginBottom: '56px' }}>
-          <h1 className="shimmer-text mb-6" style={{ marginBottom: '24px' }}>
+        {/* Hero Section */}
+        <header className="mb-16 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-light-text">
             {T.title}
           </h1>
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed" style={{ color: 'var(--text-secondary)', marginBottom: '24px' }}>
+          <p className="mx-auto max-w-2xl text-xl leading-relaxed text-light-muted mb-6">
             {T.subtitle}
           </p>
-          <div className="flex justify-center">
-            <span className="text-label" style={{ marginBottom: '48px' }}>
-              {T.privacy}
-            </span>
-          </div>
+          <p className="inline-block px-4 py-2 rounded-pill bg-light-card shadow-soft-ui text-sm font-medium text-light-muted">
+            {T.privacy}
+          </p>
         </header>
 
-        {/* Progress indicator */}
-        {progressPercent > 0 && (
-          <div className="fixed top-0 left-0 right-0 z-40 h-1" style={{ backgroundColor: 'var(--secondary-bg)' }}>
-            <div
-              className="h-full transition-all duration-500"
-              style={{
-                width: `${progressPercent}%`,
-                backgroundColor: 'var(--accent-primary)',
-              }}
-            />
-          </div>
-        )}
-
-        {/* Status grid - Light and airy */}
-        <section className="grid gap-6 sm:grid-cols-3 mb-20" style={{ marginBottom: '56px' }} aria-label="Status">
-          <div className="card animate-in animate-in-1">
-            <p className="text-label">{isPremium ? "Premium" : T.freeRemaining}</p>
-            <p className="mt-3 text-2xl font-semibold" style={{ marginTop: '12px' }}>
+        {/* Status Cards Grid */}
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 animate-fade-in" aria-label="Status">
+          <div className="card">
+            <p className="text-sm font-semibold text-light-muted uppercase tracking-wide mb-4">
+              {isPremium ? "Premium" : T.freeRemaining}
+            </p>
+            <p className="text-3xl font-bold text-brand-blue">
               {isPremium ? "✓" : remaining != null ? remaining : "—"}
             </p>
           </div>
-          <div className="card animate-in animate-in-2">
-            <p className="text-label">{T.language}</p>
-            <p className="mt-3 text-2xl font-semibold" style={{ marginTop: '12px' }}>
+          <div className="card">
+            <p className="text-sm font-semibold text-light-muted uppercase tracking-wide mb-4">
+              {T.language}
+            </p>
+            <p className="text-3xl font-bold text-light-text">
               {LANGUAGES.find((l) => l.value === targetLanguage)?.label?.split(" ")[0] ?? targetLanguage}
             </p>
           </div>
-          <div className="card animate-in animate-in-3">
-            <p className="text-label">Privacy</p>
-            <p className="mt-3 text-2xl font-semibold" style={{ marginTop: '12px' }}>Private</p>
+          <div className="card">
+            <p className="text-sm font-semibold text-light-muted uppercase tracking-wide mb-4">
+              Privacy
+            </p>
+            <p className="text-3xl font-bold text-light-text">Private</p>
           </div>
         </section>
 
-        {/* Main upload section */}
-        <main id="main" className="grid gap-6">
+        {/* Main Content Area */}
+        <main id="main" className="space-y-8">
           
-          {/* File upload card */}
+          {/* Upload Section */}
           <section
-            className={`card animate-in animate-in-4 cursor-pointer transition-all ${ isDragging ? "ring-2" : "" }`}
-            style={isDragging ? {
-              borderColor: 'var(--accent-primary)',
-              backgroundColor: 'var(--accent-light)',
-              boxShadow: '0 0 0 4px rgba(199, 161, 138, 0.15)'
-            } : { minHeight: '280px' }}
+            className={`card cursor-pointer transition-all ${isDragging ? "ring-2 ring-brand-blue bg-blue-50" : ""}`}
+            style={{
+              minHeight: "300px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
             onDragEnter={(e) => {
               e.preventDefault();
               setIsDragging(true);
@@ -782,36 +776,45 @@ export default function Home() {
               void handlePickFile(e.dataTransfer.files?.[0] ?? null);
             }}
           >
-            <div className="flex flex-col items-center justify-center gap-6" style={{ minHeight: '280px' }}>
+            <div className="text-center w-full">
               {!file ? (
-                <>
-                  <div className="text-center">
-                    <h2 className="mb-3 text-3xl" style={{ marginBottom: '12px' }}>📄</h2>
-                    <h3 className="mb-2" style={{ marginBottom: '8px' }}>{T.drop}</h3>
-                    <p className="text-small">{T.orPick}</p>
+                <div className="space-y-6">
+                  <div className="text-6xl">📄</div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-light-text mb-2">
+                      {T.drop}
+                    </h2>
+                    <p className="text-light-muted mb-8">
+                      {T.orPick}
+                    </p>
                   </div>
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="btn btn-primary"
+                    className="btn btn-primary btn-pill"
                   >
                     {T.pick}
                   </button>
-                </>
+                </div>
               ) : (
-                <>
-                  <div className="text-center">
-                    <h3 className="mb-var(--space-8) text-xl">✓ {file.name}</h3>
-                    <p className="text-small">{formatBytes(file.size)}</p>
+                <div className="space-y-4">
+                  <div className="text-4xl">✓</div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-light-text mb-2">
+                      {file.name}
+                    </h3>
+                    <p className="text-light-muted mb-4">
+                      {formatBytes(file.size)}
+                    </p>
                   </div>
                   {(isExtracting || sourceText) && (
-                    <div style={{ color: 'var(--text-secondary)' }}>
+                    <p className="text-light-muted font-medium">
                       {isExtracting
                         ? `${T.analyzing} ${Math.round((extractProgress ?? 0) * 100)}%`
                         : T.ready}
-                    </div>
+                    </p>
                   )}
-                </>
+                </div>
               )}
               <input
                 ref={fileInputRef}
@@ -830,45 +833,35 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Settings & Result section */}
-          <section className="card animate-in animate-in-5 grid gap-6" style={{ gap: '24px' }}>
+          {/* Controls & Results */}
+          <section className="space-y-8">
             
-            {/* Language & Actions */}
-            <div>
-              <h2 className="mb-4" style={{ marginBottom: '16px' }}>{T.language}</h2>
-              <div className="grid gap-4 sm:grid-cols-2" style={{ gap: '16px' }}>
-                <div>
-                  <select
-                    value={targetLanguage}
-                    onChange={(e) => {
-                      const v = e.target.value as TargetLanguage;
-                      setTargetLanguage(v);
-                      setUiLanguage(v);
-                    }}
-                    className="w-full"
-                    style={{
-                      padding: '12px 16px',
-                      borderRadius: '8px',
-                      border: '1px solid var(--tertiary-bg)',
-                      backgroundColor: 'var(--primary-bg)',
-                      color: 'var(--text-primary)',
-                      fontFamily: 'var(--font-system)',
-                      fontSize: '16px'
-                    }}
-                  >
-                    {LANGUAGES.map((l) => (
-                      <option key={l.value} value={l.value}>
-                        {l.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+            {/* Language & Action Row */}
+            <div className="space-y-4">
+              <label className="block text-sm font-semibold text-light-text uppercase tracking-wide">
+                {T.language}
+              </label>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <select
+                  value={targetLanguage}
+                  onChange={(e) => {
+                    const v = e.target.value as TargetLanguage;
+                    setTargetLanguage(v);
+                    setUiLanguage(v);
+                  }}
+                  className="w-full"
+                >
+                  {LANGUAGES.map((l) => (
+                    <option key={l.value} value={l.value}>
+                      {l.label}
+                    </option>
+                  ))}
+                </select>
                 <button
                   type="button"
                   disabled={!canSimplify}
                   onClick={() => void onSimplify()}
-                  className={`btn ${canSimplify ? "btn-primary" : ""}`}
-                  style={!canSimplify ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
+                  className={`btn btn-primary ${!canSimplify ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   {isSimplifying ? T.simplifying : T.simplify}
                 </button>
@@ -878,14 +871,8 @@ export default function Home() {
             {/* Error message */}
             {error && (
               <div 
-                className="rounded-lg p-4 text-small"
+                className="rounded-inner p-4 bg-red-50 border border-red-200 text-red-700 text-sm"
                 role="alert"
-                style={{
-                  padding: '16px',
-                  backgroundColor: 'rgba(239, 68, 68, 0.08)',
-                  color: 'var(--color-error)',
-                  border: '1px solid rgba(239, 68, 68, 0.2)'
-                }}
               >
                 {error}
               </div>
@@ -893,9 +880,13 @@ export default function Home() {
 
             {/* Premium CTA */}
             {showPremium && (
-              <div className="rounded-lg p-5" style={{ padding: '20px', backgroundColor: 'var(--accent-light)' }}>
-                <h3 className="mb-2" style={{ marginBottom: '8px' }}>{T.premiumTitle}</h3>
-                <p className="mb-4 text-small" style={{ marginBottom: '16px' }}>{T.premiumDesc}</p>
+              <div className="card bg-gradient-to-r from-brand-violet/10 to-brand-pink/10 border border-brand-violet/20">
+                <h3 className="text-lg font-bold text-light-text mb-2">
+                  {T.premiumTitle}
+                </h3>
+                <p className="text-light-muted mb-6">
+                  {T.premiumDesc}
+                </p>
                 <button
                   type="button"
                   onClick={() => void startPremium()}
@@ -907,32 +898,33 @@ export default function Home() {
             )}
 
             {/* Result display */}
-            <div>
-              <h2 className="mb-3" style={{ marginBottom: '12px' }}>{T.result}</h2>
-              <div
-                className="rounded-lg p-5 font-mono text-sm leading-relaxed"
-                style={{
-                  padding: '20px',
-                  backgroundColor: 'var(--secondary-bg)',
-                  color: result ? 'var(--text-primary)' : 'var(--text-tertiary)',
-                  minHeight: '200px',
-                  whiteSpace: 'pre-wrap',
-                  wordBreak: 'break-word',
-                  border: '1px solid var(--tertiary-bg)'
-                }}
-              >
-                {result || T.emptyResult}
+            {(result || isSimplifying) && (
+              <div className="space-y-4">
+                <label className="block text-sm font-semibold text-light-text uppercase tracking-wide">
+                  {T.result}
+                </label>
+                <div className="card p-6 min-h-80">
+                  <p className="font-mono text-base leading-relaxed whitespace-pre-wrap break-words">
+                    {result ? (
+                      <>
+                        {result}
+                        <p className="mt-6 text-xs text-light-muted font-normal">
+                          {DISCLAIMER}
+                        </p>
+                      </>
+                    ) : (
+                      <span className="text-light-muted">{T.emptyResult}</span>
+                    )}
+                  </p>
+                </div>
               </div>
-              {result && (
-                <p className="mt-3 text-small" style={{ marginTop: '12px' }}>{DISCLAIMER}</p>
-              )}
-            </div>
+            )}
           </section>
         </main>
 
         {/* Footer */}
-        <footer className="mt-20 border-t border-tertiary-bg pt-6 text-center" style={{ marginTop: '56px', paddingTop: '24px' }}>
-          <p className="text-small">
+        <footer className="mt-20 pt-12 border-t border-light-border text-center">
+          <p className="text-sm text-light-muted">
             {T.hint}
           </p>
         </footer>

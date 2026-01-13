@@ -53,7 +53,28 @@ async function preprocessImageToBlob(
   const threshold = opts?.threshold ?? 175;
   const contrast = opts?.contrast ?? 1.25;
 
-  const bitmap = await createImageBitmap(input);
+  let bitmap: ImageBitmap;
+  try {
+    bitmap = await createImageBitmap(input);
+  } catch {
+    const url = URL.createObjectURL(input);
+    try {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = url;
+      await img.decode();
+
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, img.naturalWidth || img.width);
+      canvas.height = Math.max(1, img.naturalHeight || img.height);
+      const ctx = canvas.getContext("2d", { willReadFrequently: true });
+      if (!ctx) return input;
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      bitmap = await createImageBitmap(canvas);
+    } finally {
+      URL.revokeObjectURL(url);
+    }
+  }
   const scale = Math.min(1, maxSize / Math.max(bitmap.width, bitmap.height));
   const width = Math.max(1, Math.round(bitmap.width * scale));
   const height = Math.max(1, Math.round(bitmap.height * scale));

@@ -470,9 +470,8 @@ html {
   border: 1px solid var(--sds-border-subtle);
   box-shadow: var(--sds-shadow-sm);
   transition: all 200ms cubic-bezier(0.25, 0.1, 0.25, 1.0);
-  p-6 sm:p-8;
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
 

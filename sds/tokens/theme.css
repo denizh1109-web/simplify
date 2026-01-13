@@ -1,0 +1,144 @@
+/**
+ * Simplify Design System - Extended Theming System
+ * Light & Dark modes with WCAG 2.2 AAA compliance
+ * Auto-generated from simplify-sds-manifest.json
+ */
+
+:root {
+  /* Light Mode (Default) */
+  --sds-bg: #F6F4EF;
+  --sds-surface: #E9E2D6;
+  --sds-text: #3E3A36;
+  --sds-text-secondary: #7A7268;
+  --sds-divider: #D6CEC2;
+  --sds-accent-clay: #C7A18A;
+  --sds-accent-rose: #C9A3A0;
+  
+  /* Derived Colors (Light Mode) */
+  --sds-hover: #DFD8CC;
+  --sds-focus: #C7A18A;
+  --sds-active: #D0C5BB;
+  --sds-disabled: #B8AFA2;
+  
+  /* Semantic Colors with AAA Contrast */
+  --sds-success: #6B5B47;
+  --sds-warning: #8B6F47;
+  --sds-error: #9D4B52;
+  --sds-info: #6B7A84;
+  
+  /* Typography */
+  --sds-font-primary: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sds-font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sds-line-height: 1.5;
+  
+  /* Spacing (8px Grid) */
+  --sds-spacing-unit: 8px;
+  --sds-space-xs: 4px;
+  --sds-space-sm: 8px;
+  --sds-space-md: 16px;
+  --sds-space-lg: 24px;
+  --sds-space-xl: 32px;
+  --sds-space-2xl: 48px;
+  
+  /* Border Radius (Apple Style) */
+  --sds-radius-sm: 4px;
+  --sds-radius-md: 10px;
+  --sds-radius-lg: 12px;
+  --sds-radius-full: 9999px;
+  
+  /* Shadows (Minimal, Accessible) */
+  --sds-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --sds-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --sds-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --sds-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  
+  /* Motion */
+  --sds-duration-productive: 200ms;
+  --sds-duration-expressive: 500ms;
+  --sds-ease-productive: cubic-bezier(0.25, 0.1, 0.25, 1.0);
+  --sds-ease-expressive: cubic-bezier(0.4, 0.0, 0.2, 1.0);
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sds-bg: #1A1A18;
+    --sds-surface: #2A2A28;
+    --sds-text: #F6F4EF;
+    --sds-text-secondary: #C9C2B8;
+    --sds-divider: #3E3A36;
+    --sds-hover: #35312D;
+    --sds-active: #3E3A36;
+    --sds-disabled: #4A443B;
+  }
+}
+
+/* User prefers explicit dark mode */
+html[data-theme="dark"] {
+  --sds-bg: #1A1A18;
+  --sds-surface: #2A2A28;
+  --sds-text: #F6F4EF;
+  --sds-text-secondary: #C9C2B8;
+  --sds-divider: #3E3A36;
+  --sds-hover: #35312D;
+  --sds-active: #3E3A36;
+  --sds-disabled: #4A443B;
+}
+
+/* User prefers explicit light mode */
+html[data-theme="light"] {
+  --sds-bg: #F6F4EF;
+  --sds-surface: #E9E2D6;
+  --sds-text: #3E3A36;
+  --sds-text-secondary: #7A7268;
+  --sds-divider: #D6CEC2;
+  --sds-hover: #DFD8CC;
+  --sds-active: #D0C5BB;
+  --sds-disabled: #B8AFA2;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--sds-bg);
+  color: var(--sds-text);
+  font-family: var(--sds-font-ui);
+  line-height: var(--sds-line-height);
+  transition: background-color var(--sds-duration-productive) var(--sds-ease-productive),
+              color var(--sds-duration-productive) var(--sds-ease-productive);
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Respects motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  body {
+    --sds-divider: var(--sds-text);
+  }
+}

@@ -1,0 +1,326 @@
+/**
+ * Simplify Design System - Atoms
+ * Smallest building blocks with Apple-inspired minimalism
+ */
+
+/* Text Atoms */
+.sds-text {
+  color: var(--sds-text);
+  font-family: var(--sds-font-ui);
+}
+
+.sds-text--primary {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.sds-text--secondary {
+  font-size: 14px;
+  color: var(--sds-text-secondary);
+  font-weight: 400;
+}
+
+.sds-text--label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--sds-text-secondary);
+}
+
+.sds-text--metadata {
+  font-size: 11px;
+  color: var(--sds-text-secondary);
+  opacity: 0.8;
+}
+
+/* Heading Atoms */
+.sds-heading {
+  font-family: var(--sds-font-primary);
+  font-weight: 700;
+  margin: 0;
+  color: var(--sds-text);
+}
+
+.sds-heading--h1 {
+  font-size: 32px;
+  line-height: 1.3;
+}
+
+.sds-heading--h2 {
+  font-size: 28px;
+  line-height: 1.3;
+}
+
+.sds-heading--h3 {
+  font-size: 24px;
+  line-height: 1.4;
+}
+
+.sds-heading--h4 {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+/* Icon Atoms */
+.sds-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.sds-icon--sm {
+  width: 16px;
+  height: 16px;
+}
+
+.sds-icon--lg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Spacer Atoms */
+.sds-spacer {
+  display: block;
+}
+
+.sds-spacer--xs { height: var(--sds-space-xs); }
+.sds-spacer--sm { height: var(--sds-space-sm); }
+.sds-spacer--md { height: var(--sds-space-md); }
+.sds-spacer--lg { height: var(--sds-space-lg); }
+.sds-spacer--xl { height: var(--sds-space-xl); }
+
+/* Divider Atom */
+.sds-divider {
+  height: 1px;
+  background-color: var(--sds-divider);
+  border: none;
+  margin: var(--sds-space-md) 0;
+}
+
+.sds-divider--vertical {
+  width: 1px;
+  height: 100%;
+  margin: 0 var(--sds-space-md);
+}
+
+/* Badge Atom */
+.sds-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sds-space-xs);
+  padding: 4px 8px;
+  background-color: var(--sds-surface);
+  color: var(--sds-text-secondary);
+  border-radius: var(--sds-radius-full);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sds-badge--success {
+  background-color: rgba(107, 91, 71, 0.1);
+  color: var(--sds-success);
+}
+
+.sds-badge--warning {
+  background-color: rgba(139, 111, 71, 0.1);
+  color: var(--sds-warning);
+}
+
+.sds-badge--error {
+  background-color: rgba(157, 75, 82, 0.1);
+  color: var(--sds-error);
+}
+
+/**
+ * Simplify Design System - Molecules
+ * Combinations of atoms for interactive elements
+ */
+
+/* Button Molecule */
+.sds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sds-space-sm);
+  padding: var(--sds-space-md) var(--sds-space-lg);
+  
+  font-family: var(--sds-font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  
+  border: none;
+  border-radius: var(--sds-radius-md);
+  background-color: var(--sds-text);
+  color: var(--sds-bg);
+  
+  cursor: pointer;
+  transition: all var(--sds-duration-productive) var(--sds-ease-productive);
+  box-shadow: var(--sds-shadow-sm);
+  
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sds-btn:hover:not(:disabled) {
+  background-color: var(--sds-active);
+  box-shadow: var(--sds-shadow-md);
+  transform: translateY(-1px);
+}
+
+.sds-btn:focus-visible {
+  outline: 2px solid var(--sds-accent-clay);
+  outline-offset: 2px;
+}
+
+.sds-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.sds-btn:disabled {
+  background-color: var(--sds-disabled);
+  color: var(--sds-text-secondary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.sds-btn--secondary {
+  background-color: var(--sds-surface);
+  color: var(--sds-text);
+  border: 1px solid var(--sds-divider);
+}
+
+.sds-btn--secondary:hover:not(:disabled) {
+  background-color: var(--sds-hover);
+  border-color: var(--sds-accent-clay);
+}
+
+/* Card Molecule */
+.sds-card {
+  padding: var(--sds-space-lg);
+  background-color: var(--sds-surface);
+  border-radius: var(--sds-radius-lg);
+  border: 1px solid var(--sds-divider);
+  box-shadow: var(--sds-shadow-sm);
+  transition: all var(--sds-duration-productive) var(--sds-ease-productive);
+}
+
+.sds-card:hover {
+  box-shadow: var(--sds-shadow-md);
+  border-color: var(--sds-accent-clay);
+  transform: translateY(-2px);
+}
+
+.sds-card--interactive {
+  cursor: pointer;
+}
+
+.sds-card--interactive:active {
+  transform: translateY(0);
+}
+
+/* Input Molecule */
+.sds-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sds-space-sm);
+}
+
+.sds-input-group__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sds-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sds-input {
+  padding: var(--sds-space-md) var(--sds-space-md);
+  border: 1px solid var(--sds-divider);
+  border-radius: var(--sds-radius-md);
+  background-color: var(--sds-bg);
+  color: var(--sds-text);
+  font-family: var(--sds-font-ui);
+  font-size: 14px;
+  
+  transition: all var(--sds-duration-productive) var(--sds-ease-productive);
+  appearance: none;
+}
+
+.sds-input:focus {
+  outline: none;
+  border-color: var(--sds-accent-clay);
+  box-shadow: inset 0 0 0 2px rgba(199, 161, 138, 0.2);
+}
+
+.sds-input:disabled {
+  background-color: var(--sds-surface);
+  color: var(--sds-text-secondary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.sds-input--error {
+  border-color: var(--sds-error);
+}
+
+.sds-input-group__hint {
+  font-size: 12px;
+  color: var(--sds-text-secondary);
+}
+
+.sds-input-group__error {
+  font-size: 12px;
+  color: var(--sds-error);
+  font-weight: 600;
+}
+
+/* Tag/Chip Molecule */
+.sds-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sds-space-xs);
+  padding: 6px 12px;
+  background-color: var(--sds-surface);
+  color: var(--sds-text);
+  border-radius: var(--sds-radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--sds-divider);
+}
+
+.sds-tag--removable {
+  cursor: pointer;
+}
+
+.sds-tag--removable:hover {
+  background-color: var(--sds-hover);
+}
+
+/* Avatar Molecule */
+.sds-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--sds-radius-full);
+  background-color: var(--sds-accent-clay);
+  color: var(--sds-bg);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.sds-avatar--sm {
+  width: 32px;
+  height: 32px;
+}
+
+.sds-avatar--lg {
+  width: 48px;
+  height: 48px;
+}

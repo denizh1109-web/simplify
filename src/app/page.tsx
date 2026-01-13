@@ -706,18 +706,18 @@ export default function Home() {
       </div>
 
       {/* Main content container */}
-      <div className="mx-auto w-full max-w-4xl px-var(--space-20) py-var(--space-56) sm:py-var(--space-56)">
+      <div className="mx-auto w-full max-w-4xl px-5 py-20 sm:py-28" style={{ padding: '56px 20px' }}>
         
         {/* Hero Section - Minimal & Bold */}
-        <header className="mb-var(--space-56) text-center">
-          <h1 className="shimmer-text mb-var(--space-24)">
+        <header className="mb-20 text-center" style={{ marginBottom: '56px' }}>
+          <h1 className="shimmer-text mb-6" style={{ marginBottom: '24px' }}>
             {T.title}
           </h1>
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed" style={{ color: 'var(--text-secondary)', marginBottom: 'var(--space-24)' }}>
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed" style={{ color: 'var(--text-secondary)', marginBottom: '24px' }}>
             {T.subtitle}
           </p>
           <div className="flex justify-center">
-            <span className="text-label" style={{ marginBottom: 'var(--space-48)' }}>
+            <span className="text-label" style={{ marginBottom: '48px' }}>
               {T.privacy}
             </span>
           </div>
@@ -737,27 +737,27 @@ export default function Home() {
         )}
 
         {/* Status grid - Light and airy */}
-        <section className="mb-var(--space-56) grid gap-var(--space-24) sm:grid-cols-3" aria-label="Status">
+        <section className="grid gap-6 sm:grid-cols-3 mb-20" style={{ marginBottom: '56px' }} aria-label="Status">
           <div className="card animate-in animate-in-1">
             <p className="text-label">{isPremium ? "Premium" : T.freeRemaining}</p>
-            <p className="mt-var(--space-12) text-2xl font-semibold">
+            <p className="mt-3 text-2xl font-semibold" style={{ marginTop: '12px' }}>
               {isPremium ? "✓" : remaining != null ? remaining : "—"}
             </p>
           </div>
           <div className="card animate-in animate-in-2">
             <p className="text-label">{T.language}</p>
-            <p className="mt-var(--space-12) text-2xl font-semibold">
+            <p className="mt-3 text-2xl font-semibold" style={{ marginTop: '12px' }}>
               {LANGUAGES.find((l) => l.value === targetLanguage)?.label?.split(" ")[0] ?? targetLanguage}
             </p>
           </div>
           <div className="card animate-in animate-in-3">
             <p className="text-label">Privacy</p>
-            <p className="mt-var(--space-12) text-2xl font-semibold">Private</p>
+            <p className="mt-3 text-2xl font-semibold" style={{ marginTop: '12px' }}>Private</p>
           </div>
         </section>
 
         {/* Main upload section */}
-        <main id="main" className="grid gap-var(--space-24)">
+        <main id="main" className="grid gap-6">
           
           {/* File upload card */}
           <section
@@ -782,12 +782,12 @@ export default function Home() {
               void handlePickFile(e.dataTransfer.files?.[0] ?? null);
             }}
           >
-            <div className="flex flex-col items-center justify-center gap-var(--space-24)" style={{ minHeight: '280px' }}>
+            <div className="flex flex-col items-center justify-center gap-6" style={{ minHeight: '280px' }}>
               {!file ? (
                 <>
                   <div className="text-center">
-                    <h2 className="mb-var(--space-12) text-3xl">📄</h2>
-                    <h3 className="mb-var(--space-8)">{T.drop}</h3>
+                    <h2 className="mb-3 text-3xl" style={{ marginBottom: '12px' }}>📄</h2>
+                    <h3 className="mb-2" style={{ marginBottom: '8px' }}>{T.drop}</h3>
                     <p className="text-small">{T.orPick}</p>
                   </div>
                   <button
@@ -831,12 +831,12 @@ export default function Home() {
           </section>
 
           {/* Settings & Result section */}
-          <section className="card animate-in animate-in-5 grid gap-var(--space-24)">
+          <section className="card animate-in animate-in-5 grid gap-6" style={{ gap: '24px' }}>
             
             {/* Language & Actions */}
             <div>
-              <h2 className="mb-var(--space-16)">{T.language}</h2>
-              <div className="grid gap-var(--space-16) sm:grid-cols-2">
+              <h2 className="mb-4" style={{ marginBottom: '16px' }}>{T.language}</h2>
+              <div className="grid gap-4 sm:grid-cols-2" style={{ gap: '16px' }}>
                 <div>
                   <select
                     value={targetLanguage}
@@ -847,8 +847,8 @@ export default function Home() {
                     }}
                     className="w-full"
                     style={{
-                      padding: 'var(--space-12) var(--space-16)',
-                      borderRadius: 'var(--radius-8)',
+                      padding: '12px 16px',
+                      borderRadius: '8px',
                       border: '1px solid var(--tertiary-bg)',
                       backgroundColor: 'var(--primary-bg)',
                       color: 'var(--text-primary)',
@@ -878,9 +878,10 @@ export default function Home() {
             {/* Error message */}
             {error && (
               <div 
-                className="rounded-lg p-var(--space-16) text-small"
+                className="rounded-lg p-4 text-small"
                 role="alert"
                 style={{
+                  padding: '16px',
                   backgroundColor: 'rgba(239, 68, 68, 0.08)',
                   color: 'var(--color-error)',
                   border: '1px solid rgba(239, 68, 68, 0.2)'
@@ -892,9 +893,9 @@ export default function Home() {
 
             {/* Premium CTA */}
             {showPremium && (
-              <div className="rounded-lg p-var(--space-20)" style={{ backgroundColor: 'var(--accent-light)' }}>
-                <h3 className="mb-var(--space-8)">{T.premiumTitle}</h3>
-                <p className="mb-var(--space-16) text-small">{T.premiumDesc}</p>
+              <div className="rounded-lg p-5" style={{ padding: '20px', backgroundColor: 'var(--accent-light)' }}>
+                <h3 className="mb-2" style={{ marginBottom: '8px' }}>{T.premiumTitle}</h3>
+                <p className="mb-4 text-small" style={{ marginBottom: '16px' }}>{T.premiumDesc}</p>
                 <button
                   type="button"
                   onClick={() => void startPremium()}
@@ -907,10 +908,11 @@ export default function Home() {
 
             {/* Result display */}
             <div>
-              <h2 className="mb-var(--space-12)">{T.result}</h2>
+              <h2 className="mb-3" style={{ marginBottom: '12px' }}>{T.result}</h2>
               <div
-                className="rounded-lg p-var(--space-20) font-mono text-sm leading-relaxed"
+                className="rounded-lg p-5 font-mono text-sm leading-relaxed"
                 style={{
+                  padding: '20px',
                   backgroundColor: 'var(--secondary-bg)',
                   color: result ? 'var(--text-primary)' : 'var(--text-tertiary)',
                   minHeight: '200px',
@@ -922,14 +924,14 @@ export default function Home() {
                 {result || T.emptyResult}
               </div>
               {result && (
-                <p className="mt-var(--space-12) text-small">{DISCLAIMER}</p>
+                <p className="mt-3 text-small" style={{ marginTop: '12px' }}>{DISCLAIMER}</p>
               )}
             </div>
           </section>
         </main>
 
         {/* Footer */}
-        <footer className="mt-var(--space-56) border-t border-tertiary-bg pt-var(--space-24) text-center">
+        <footer className="mt-20 border-t border-tertiary-bg pt-6 text-center" style={{ marginTop: '56px', paddingTop: '24px' }}>
           <p className="text-small">
             {T.hint}
           </p>
@@ -937,5 +939,4 @@ export default function Home() {
       </div>
     </div>
   );
-}
 }

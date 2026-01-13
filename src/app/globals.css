@@ -1,6 +1,59 @@
 @import "tailwindcss";
 
+/* Simplify Design System - Extended Theme */
 :root {
+  /* Light Mode (Default) - From Manifest */
+  --sds-bg: #F6F4EF;
+  --sds-surface: #E9E2D6;
+  --sds-text: #3E3A36;
+  --sds-text-secondary: #7A7268;
+  --sds-divider: #D6CEC2;
+  --sds-accent-clay: #C7A18A;
+  --sds-accent-rose: #C9A3A0;
+  
+  /* Derived Colors (Light Mode) */
+  --sds-hover: #DFD8CC;
+  --sds-active: #D0C5BB;
+  --sds-disabled: #B8AFA2;
+  
+  /* Semantic Colors with AAA Contrast */
+  --sds-success: #6B5B47;
+  --sds-warning: #8B6F47;
+  --sds-error: #9D4B52;
+  --sds-info: #6B7A84;
+  
+  /* Typography */
+  --sds-font-primary: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sds-font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sds-line-height: 1.5;
+  
+  /* Spacing (8px Grid) */
+  --sds-space-xs: 4px;
+  --sds-space-sm: 8px;
+  --sds-space-md: 16px;
+  --sds-space-lg: 24px;
+  --sds-space-xl: 32px;
+  --sds-space-2xl: 48px;
+  
+  /* Border Radius (Apple Style) */
+  --sds-radius-sm: 4px;
+  --sds-radius-md: 10px;
+  --sds-radius-lg: 12px;
+  --sds-radius-full: 9999px;
+  
+  /* Shadows (Minimal, Accessible) */
+  --sds-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --sds-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --sds-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --sds-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  
+  /* Motion */
+  --sds-duration-productive: 200ms;
+  --sds-duration-expressive: 500ms;
+  --sds-ease-productive: cubic-bezier(0.25, 0.1, 0.25, 1.0);
+  --sds-ease-expressive: cubic-bezier(0.4, 0.0, 0.2, 1.0);
+  
+  /* Legacy Variables (for backwards compatibility) */
   --background: #D3CCBF;
   --foreground: #21211A;
   --kk-surface: #FFFFFF;
@@ -36,6 +89,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    /* Dark Mode - From Manifest */
+    --sds-bg: #1A1A18;
+    --sds-surface: #2A2A28;
+    --sds-text: #F6F4EF;
+    --sds-text-secondary: #C9C2B8;
+    --sds-divider: #3E3A36;
+    --sds-hover: #35312D;
+    --sds-active: #3E3A36;
+    --sds-disabled: #4A443B;
+    
+    /* Legacy for backwards compatibility */
     --background: #D3CCBF;
     --foreground: #21211A;
     --kk-surface: #FFFFFF;
@@ -47,6 +111,28 @@
     --kk-accent: #8C7F70;
     --kk-focus: rgba(140, 127, 112, 0.55);
   }
+}
+
+html[data-theme="dark"] {
+  --sds-bg: #1A1A18;
+  --sds-surface: #2A2A28;
+  --sds-text: #F6F4EF;
+  --sds-text-secondary: #C9C2B8;
+  --sds-divider: #3E3A36;
+  --sds-hover: #35312D;
+  --sds-active: #3E3A36;
+  --sds-disabled: #4A443B;
+}
+
+html[data-theme="light"] {
+  --sds-bg: #F6F4EF;
+  --sds-surface: #E9E2D6;
+  --sds-text: #3E3A36;
+  --sds-text-secondary: #7A7268;
+  --sds-divider: #D6CEC2;
+  --sds-hover: #DFD8CC;
+  --sds-active: #D0C5BB;
+  --sds-disabled: #B8AFA2;
 }
 
 body {
@@ -166,4 +252,198 @@ html {
   font-display: swap;
   font-style: normal;
   font-weight: 400;
+}
+
+/* Simplify Design System - Atoms & Molecules */
+
+/* SDS Text Elements */
+.sds-text {
+  color: var(--sds-text);
+  font-family: var(--sds-font-ui);
+}
+
+.sds-text--primary {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.sds-text--secondary {
+  font-size: 14px;
+  color: var(--sds-text-secondary);
+  font-weight: 400;
+}
+
+.sds-text--label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--sds-text-secondary);
+}
+
+.sds-text--metadata {
+  font-size: 11px;
+  color: var(--sds-text-secondary);
+  opacity: 0.8;
+}
+
+/* SDS Headings */
+.sds-heading {
+  font-family: var(--sds-font-primary);
+  font-weight: 700;
+  margin: 0;
+  color: var(--sds-text);
+}
+
+.sds-heading--h1 {
+  font-size: 32px;
+  line-height: 1.3;
+}
+
+.sds-heading--h2 {
+  font-size: 28px;
+  line-height: 1.3;
+}
+
+.sds-heading--h3 {
+  font-size: 24px;
+  line-height: 1.4;
+}
+
+.sds-heading--h4 {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+/* SDS Button */
+.sds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sds-space-sm);
+  padding: var(--sds-space-md) var(--sds-space-lg);
+  
+  font-family: var(--sds-font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  
+  border: none;
+  border-radius: var(--sds-radius-md);
+  background-color: var(--sds-text);
+  color: var(--sds-bg);
+  
+  cursor: pointer;
+  transition: all var(--sds-duration-productive) var(--sds-ease-productive);
+  box-shadow: var(--sds-shadow-sm);
+  
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sds-btn:hover:not(:disabled) {
+  background-color: var(--sds-active);
+  box-shadow: var(--sds-shadow-md);
+  transform: translateY(-1px);
+}
+
+.sds-btn:focus-visible {
+  outline: 2px solid var(--sds-accent-clay);
+  outline-offset: 2px;
+}
+
+.sds-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.sds-btn:disabled {
+  background-color: var(--sds-disabled);
+  color: var(--sds-text-secondary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.sds-btn--secondary {
+  background-color: var(--sds-surface);
+  color: var(--sds-text);
+  border: 1px solid var(--sds-divider);
+}
+
+.sds-btn--secondary:hover:not(:disabled) {
+  background-color: var(--sds-hover);
+  border-color: var(--sds-accent-clay);
+}
+
+.sds-btn--sm {
+  padding: var(--sds-space-sm) var(--sds-space-md);
+  font-size: 13px;
+}
+
+.sds-btn--lg {
+  padding: var(--sds-space-lg) var(--sds-space-xl);
+  font-size: 16px;
+}
+
+/* SDS Card */
+.sds-card {
+  padding: var(--sds-space-lg);
+  background-color: var(--sds-surface);
+  border-radius: var(--sds-radius-lg);
+  border: 1px solid var(--sds-divider);
+  box-shadow: var(--sds-shadow-sm);
+  transition: all var(--sds-duration-productive) var(--sds-ease-productive);
+}
+
+.sds-card:hover {
+  box-shadow: var(--sds-shadow-md);
+  border-color: var(--sds-accent-clay);
+  transform: translateY(-2px);
+}
+
+.sds-card--interactive {
+  cursor: pointer;
+}
+
+.sds-card--interactive:active {
+  transform: translateY(0);
+}
+
+/* SDS Badge */
+.sds-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sds-space-xs);
+  padding: 4px 8px;
+  background-color: var(--sds-surface);
+  color: var(--sds-text-secondary);
+  border-radius: var(--sds-radius-full);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sds-badge--success {
+  background-color: rgba(107, 91, 71, 0.1);
+  color: var(--sds-success);
+}
+
+.sds-badge--warning {
+  background-color: rgba(139, 111, 71, 0.1);
+  color: var(--sds-warning);
+}
+
+.sds-badge--error {
+  background-color: rgba(157, 75, 82, 0.1);
+  color: var(--sds-error);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sds-btn,
+  .sds-card {
+    transition: none;
+  }
+  
+  .sds-btn:hover:not(:disabled),
+  .sds-card:hover {
+    transform: none;
+  }
 }

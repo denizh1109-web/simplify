@@ -125,11 +125,22 @@ async function ocrImage(file: File, onProgress?: (p: number) => void) {
       preserve_interword_spaces: "1",
     });
 
-    const processed = await preprocessImageToBlob(file);
-    const {
-      data: { text },
-    } = await worker.recognize(processed);
-    return text;
+    const attempts: Blob[] = [
+      await preprocessImageToBlob(file),
+      await preprocessImageToBlob(file, { threshold: 150, contrast: 1.1 }),
+      await preprocessImageToBlob(file, { threshold: 200, contrast: 1.35 }),
+      file,
+    ];
+
+    for (let i = 0; i < attempts.length; i++) {
+      const {
+        data: { text },
+      } = await worker.recognize(attempts[i]);
+      const cleaned = (text || "").trim();
+      if (cleaned) return cleaned;
+    }
+
+    return "";
   } finally {
     await worker.terminate();
   }

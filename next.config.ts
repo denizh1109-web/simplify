@@ -22,7 +22,6 @@ const nextConfig: NextConfig = {
     ].join("; ");
 
     const securityHeaders = [
-      { key: "Content-Security-Policy", value: csp },
       { key: "Referrer-Policy", value: "no-referrer" },
       { key: "X-Content-Type-Options", value: "nosniff" },
       { key: "X-Frame-Options", value: "DENY" },

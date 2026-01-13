@@ -692,322 +692,250 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'var(--sds-surface-primary)', color: 'var(--sds-text-primary)' }} dir={uiDir}>
-      <a className="kk-skip-link" href="#main">
+    <div style={{ backgroundColor: 'var(--primary-bg)', color: 'var(--text-primary)' }} dir={uiDir}>
+      <a className="skip-link" href="#main">
         Zum Inhalt
       </a>
 
-      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-24 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full blur-3xl" style={{ backgroundColor: 'var(--sds-accent-clay-soft)' }} />
-        <div className="absolute -bottom-32 left-10 h-[360px] w-[360px] rounded-full blur-3xl" style={{ backgroundColor: 'var(--sds-accent-rose-soft)' }} />
+      {/* Subtler background gradients */}
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" style={{ backgroundColor: 'var(--primary-bg)' }}>
+        <div 
+          className="absolute -top-40 right-20 h-96 w-96 rounded-full blur-3xl opacity-30" 
+          style={{ backgroundColor: 'var(--accent-light)' }} 
+        />
       </div>
 
-      <div className="mx-auto w-full max-w-5xl px-5 py-8 sm:px-6 sm:py-12">
-        <header className="mb-0">
-          <div className="px-1 py-2 text-center sm:px-2">
-            <div className="flex items-center justify-center gap-3">
-              <h1
-                className="sds-heading-1 animate-text-shimmer"
-              >
-                {T.title}
-              </h1>
-            </div>
-            <p className="sds-text-body-lg mx-auto mt-3 max-w-2xl sm:mt-4" style={{ color: 'var(--sds-text-secondary)' }}>
-              {T.subtitle}
-            </p>
-            <div className="mt-3 inline-flex rounded-full px-4 py-2 text-xs font-medium backdrop-blur-sm" style={{ 
-              backgroundColor: 'var(--sds-surface-tertiary)',
-              color: 'var(--sds-text-primary)',
-              border: '1px solid var(--sds-border-subtle)'
-            }}>
+      {/* Main content container */}
+      <div className="mx-auto w-full max-w-4xl px-var(--space-20) py-var(--space-56) sm:py-var(--space-56)">
+        
+        {/* Hero Section - Minimal & Bold */}
+        <header className="mb-var(--space-56) text-center">
+          <h1 className="shimmer-text mb-var(--space-24)">
+            {T.title}
+          </h1>
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed" style={{ color: 'var(--text-secondary)', marginBottom: 'var(--space-24)' }}>
+            {T.subtitle}
+          </p>
+          <div className="flex justify-center">
+            <span className="text-label" style={{ marginBottom: 'var(--space-48)' }}>
               {T.privacy}
-            </div>
+            </span>
           </div>
         </header>
 
+        {/* Progress indicator */}
         {progressPercent > 0 && (
-          <div className="sticky top-3 z-10 mt-4">
-            <div className="-mx-5 rounded-2xl px-5 py-3 backdrop-blur-sm sm:-mx-6 sm:px-6" style={{
-              backgroundColor: 'var(--sds-surface-primary-soft)'
-            }}>
-              <div
-                className="relative h-1.5 w-full overflow-hidden rounded-full shadow-[inset_0_0_0_1px_rgba(0,0,0,0.08)]"
-                role="progressbar"
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-valuenow={progressPercent}
-                aria-valuetext={`${progressPercent}%`}
-                style={{ backgroundColor: 'var(--sds-surface-secondary)' }}
-              >
-                <div
-                  className="relative h-1.5 rounded-full motion-safe:transition-[width] motion-safe:duration-700 motion-safe:ease-out"
-                  style={{ 
-                    width: `${progressPercent}%`,
-                    backgroundColor: 'var(--sds-accent-clay)'
-                  }}
-                >
-                  <div className="absolute right-0 top-1/2 h-5 w-8 -translate-y-1/2 blur-md" style={{ backgroundColor: 'var(--sds-accent-clay-soft)' }} />
-                </div>
-              </div>
-            </div>
+          <div className="fixed top-0 left-0 right-0 z-40 h-1" style={{ backgroundColor: 'var(--secondary-bg)' }}>
+            <div
+              className="h-full transition-all duration-500"
+              style={{
+                width: `${progressPercent}%`,
+                backgroundColor: 'var(--accent-primary)',
+              }}
+            />
           </div>
         )}
 
-        <section aria-label="Status" className="mt-4 grid gap-3 sm:grid-cols-3">
-          <div className="sds-card animate-slide-in animate-slide-in-1">
-            <div className="sds-text-sm-bold" style={{ color: 'var(--sds-text-secondary)' }}>{isPremium ? "Premium" : T.freeRemaining}</div>
-            <div className="sds-text-body-lg font-semibold tracking-tight mt-1">
-              {isPremium ? "Aktiv" : remaining != null ? remaining : "—"}
-            </div>
+        {/* Status grid - Light and airy */}
+        <section className="mb-var(--space-56) grid gap-var(--space-24) sm:grid-cols-3" aria-label="Status">
+          <div className="card animate-in animate-in-1">
+            <p className="text-label">{isPremium ? "Premium" : T.freeRemaining}</p>
+            <p className="mt-var(--space-12) text-2xl font-semibold">
+              {isPremium ? "✓" : remaining != null ? remaining : "—"}
+            </p>
           </div>
-          <div className="sds-card animate-slide-in animate-slide-in-2">
-            <div className="sds-text-sm-bold" style={{ color: 'var(--sds-text-secondary)' }}>{T.language}</div>
-            <div className="sds-text-body-lg font-semibold tracking-tight mt-1">
-              {LANGUAGES.find((l) => l.value === targetLanguage)?.label ?? targetLanguage}
-            </div>
+          <div className="card animate-in animate-in-2">
+            <p className="text-label">{T.language}</p>
+            <p className="mt-var(--space-12) text-2xl font-semibold">
+              {LANGUAGES.find((l) => l.value === targetLanguage)?.label?.split(" ")[0] ?? targetLanguage}
+            </p>
           </div>
-          <div className="sds-card animate-slide-in animate-slide-in-3">
-            <div className="sds-text-sm-bold" style={{ color: 'var(--sds-text-secondary)' }}>Privacy</div>
-            <div className="sds-text-body-lg font-semibold tracking-tight mt-1">Session only</div>
+          <div className="card animate-in animate-in-3">
+            <p className="text-label">Privacy</p>
+            <p className="mt-var(--space-12) text-2xl font-semibold">Private</p>
           </div>
         </section>
 
-        <main id="main" className="mt-6 grid gap-6">
+        {/* Main upload section */}
+        <main id="main" className="grid gap-var(--space-24)">
+          
+          {/* File upload card */}
           <section
-            className={
-              "sds-card animate-slide-in animate-slide-in-4 transition-all duration-200 motion-safe:hover:-translate-y-0.5 " +
-              (isDragging
-                ? "ring-4"
-                : "hover:border-opacity-60")
-            }
+            className={`card animate-in animate-in-4 cursor-pointer transition-all ${ isDragging ? "ring-2" : "" }`}
             style={isDragging ? {
-              borderColor: 'var(--sds-accent-clay)',
-              backgroundColor: 'var(--sds-surface-primary-soft)',
-              boxShadow: '0 0 0 4px var(--sds-accent-clay-soft)'
-            } : {}}
+              borderColor: 'var(--accent-primary)',
+              backgroundColor: 'var(--accent-light)',
+              boxShadow: '0 0 0 4px rgba(199, 161, 138, 0.15)'
+            } : { minHeight: '280px' }}
             onDragEnter={(e) => {
               e.preventDefault();
-              e.stopPropagation();
               setIsDragging(true);
             }}
             onDragOver={(e) => {
               e.preventDefault();
-              e.stopPropagation();
               setIsDragging(true);
             }}
-            onDragLeave={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setIsDragging(false);
-            }}
+            onDragLeave={() => setIsDragging(false)}
             onDrop={(e) => {
               e.preventDefault();
-              e.stopPropagation();
               setIsDragging(false);
-              const dropped = e.dataTransfer.files?.[0];
-              void handlePickFile(dropped ?? null);
+              void handlePickFile(e.dataTransfer.files?.[0] ?? null);
             }}
           >
-            <div className="flex flex-col gap-5">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h2 className="sds-heading-3">{T.drop}</h2>
-                  <p className="mt-1 max-w-2xl sds-text-body" style={{ color: 'var(--sds-text-secondary)' }}>{T.orPick}</p>
-                </div>
-                <div className="hidden sm:block">
-                  <div className="rounded-full px-3 py-1 text-xs" style={{
-                    backgroundColor: 'var(--sds-surface-tertiary)',
-                    color: 'var(--sds-text-secondary)',
-                    border: '1px solid var(--sds-border-subtle)'
-                  }}>
-                    {T.types}
+            <div className="flex flex-col items-center justify-center gap-var(--space-24)" style={{ minHeight: '280px' }}>
+              {!file ? (
+                <>
+                  <div className="text-center">
+                    <h2 className="mb-var(--space-12) text-3xl">📄</h2>
+                    <h3 className="mb-var(--space-8)">{T.drop}</h3>
+                    <p className="text-small">{T.orPick}</p>
                   </div>
-                </div>
-              </div>
-
-              <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row">
-                <input
-                  id="kk-file"
-                  type="file"
-                  className="sr-only"
-                  accept="application/pdf,.pdf,text/plain,.txt,image/*"
-                  aria-describedby="kk-file-help kk-file-name"
-                  ref={fileInputRef}
-                  onChange={(e) => {
-                    const f = e.currentTarget.files?.[0] ?? null;
-                    if (!f) {
-                      setError(
-                        "Keine Datei übernommen. Tipp: Öffne das PDF in der Dateien-App und teile es erneut oder speichere es lokal (nicht nur Vorschau/iCloud)."
-                      );
-                      e.currentTarget.value = "";
-                      return;
-                    }
-                    void handlePickFile(f);
-                    e.currentTarget.value = "";
-                  }}
-                />
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  className="sds-btn sds-btn-primary inline-flex h-11 cursor-pointer items-center justify-center rounded-full px-5 text-sm font-semibold shadow-lg transition-all duration-200 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-xl active:translate-y-px"
-                >
-                  {T.pick}
-                </button>
-
-                <div id="kk-file-name" className="text-xs" style={{ color: 'var(--sds-text-secondary)' }} aria-live="polite">
-                  {file ? (
-                    <span>
-                      {file.name} · {formatBytes(file.size)}
-                    </span>
-                  ) : (
-                    <span>{T.noFile}</span>
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="btn btn-primary"
+                  >
+                    {T.pick}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="text-center">
+                    <h3 className="mb-var(--space-8) text-xl">✓ {file.name}</h3>
+                    <p className="text-small">{formatBytes(file.size)}</p>
+                  </div>
+                  {(isExtracting || sourceText) && (
+                    <div style={{ color: 'var(--text-secondary)' }}>
+                      {isExtracting
+                        ? `${T.analyzing} ${Math.round((extractProgress ?? 0) * 100)}%`
+                        : T.ready}
+                    </div>
                   )}
-                </div>
-              </div>
-
-              <div id="kk-file-help" className="sr-only">
-                {T.types}
-              </div>
-
-              {(isExtracting || sourceText) && (
-                <div
-                  className="mt-1 flex items-center gap-3 rounded-xl px-4 py-3 text-sm"
-                  role="status"
-                  aria-live="polite"
-                  style={{
-                    backgroundColor: 'var(--sds-surface-secondary)',
-                    color: 'var(--sds-text-secondary)',
-                    border: '1px solid var(--sds-border-subtle)'
-                  }}
-                >
-                  <div className="h-2 w-2 rounded-full motion-safe:animate-pulse" style={{ backgroundColor: 'var(--sds-accent-clay)' }} />
-                  <div className="flex-1">
-                    {isExtracting
-                      ? extractProgress != null
-                        ? `${T.analyzing} ${Math.round(extractProgress * 100)}%`
-                        : T.analyzing
-                      : T.ready}
-                  </div>
-                </div>
+                </>
               )}
+              <input
+                ref={fileInputRef}
+                type="file"
+                className="sr-only"
+                accept="application/pdf,.pdf,text/plain,.txt,image/*"
+                onChange={(e) => {
+                  const f = e.currentTarget.files?.[0];
+                  if (!f) {
+                    setError("Keine Datei übernommen.");
+                    return;
+                  }
+                  void handlePickFile(f);
+                }}
+              />
             </div>
           </section>
 
-          <section className="sds-card animate-slide-in animate-slide-in-5 grid gap-4 transition-all duration-200 motion-safe:hover:-translate-y-0.5">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <h2 className="sds-heading-3">{T.language}</h2>
-              <div className="text-xs font-medium" style={{ color: 'var(--sds-text-secondary)' }}>
-                {isPremium
-                  ? "Premium"
-                  : remaining != null
-                    ? `${T.freeRemaining}: ${remaining}`
-                    : ""}
-              </div>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 sm:items-end">
-              <label className="grid gap-2">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-xs font-semibold" style={{ color: 'var(--sds-text-secondary)' }}>{T.language}</span>
-                  <button
-                    type="button"
-                    className="inline-flex h-8 items-center justify-center rounded-full px-3 text-[11px] font-semibold transition-all duration-200 hover:shadow-md motion-safe:hover:-translate-y-0.5 active:translate-y-px"
-                    style={{
-                      backgroundColor: 'var(--sds-surface-secondary)',
-                      color: 'var(--sds-text-primary)',
-                      border: '1px solid var(--sds-border-subtle)'
+          {/* Settings & Result section */}
+          <section className="card animate-in animate-in-5 grid gap-var(--space-24)">
+            
+            {/* Language & Actions */}
+            <div>
+              <h2 className="mb-var(--space-16)">{T.language}</h2>
+              <div className="grid gap-var(--space-16) sm:grid-cols-2">
+                <div>
+                  <select
+                    value={targetLanguage}
+                    onChange={(e) => {
+                      const v = e.target.value as TargetLanguage;
+                      setTargetLanguage(v);
+                      setUiLanguage(v);
                     }}
-                    onClick={() => {
-                      setUiLanguage("Deutsch");
-                      setTargetLanguage("Deutsch");
+                    className="w-full"
+                    style={{
+                      padding: 'var(--space-12) var(--space-16)',
+                      borderRadius: 'var(--radius-8)',
+                      border: '1px solid var(--tertiary-bg)',
+                      backgroundColor: 'var(--primary-bg)',
+                      color: 'var(--text-primary)',
+                      fontFamily: 'var(--font-system)',
+                      fontSize: '16px'
                     }}
                   >
-                    {T.reset}
-                  </button>
+                    {LANGUAGES.map((l) => (
+                      <option key={l.value} value={l.value}>
+                        {l.label}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-                <select
-                  value={targetLanguage}
-                  onChange={(e) => {
-                    const v = e.target.value as TargetLanguage;
-                    setTargetLanguage(v);
-                    setUiLanguage(v);
-                  }}
-                  className="h-11 w-full rounded-xl px-3 text-sm shadow-sm outline-none transition focus:ring-4 active:translate-y-px"
-                  style={{
-                    backgroundColor: 'var(--sds-surface-secondary)',
-                    color: 'var(--sds-text-primary)',
-                    border: '1px solid var(--sds-border-subtle)',
-                    focusBorderColor: 'var(--sds-accent-clay)'
-                  }}
+                <button
+                  type="button"
+                  disabled={!canSimplify}
+                  onClick={() => void onSimplify()}
+                  className={`btn ${canSimplify ? "btn-primary" : ""}`}
+                  style={!canSimplify ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
                 >
-                  {LANGUAGES.map((l) => (
-                    <option key={l.value} value={l.value}>
-                      {l.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <button
-                type="button"
-                disabled={!canSimplify}
-                onClick={() => void onSimplify()}
-                className={
-                  "sds-btn inline-flex h-11 items-center justify-center rounded-xl px-5 text-sm font-semibold shadow-lg transition-all duration-200 active:translate-y-px " +
-                  (canSimplify
-                    ? "sds-btn-primary motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-xl"
-                    : "cursor-not-allowed opacity-50")
-                }
-              >
-                {isSimplifying ? T.simplifying : T.simplify}
-              </button>
+                  {isSimplifying ? T.simplifying : T.simplify}
+                </button>
+              </div>
             </div>
 
+            {/* Error message */}
             {error && (
-              <div className="rounded-xl px-4 py-3 text-sm" role="alert" style={{
-                backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                color: '#991B1B',
-                border: '1px solid rgba(239, 68, 68, 0.2)'
-              }}>
+              <div 
+                className="rounded-lg p-var(--space-16) text-small"
+                role="alert"
+                style={{
+                  backgroundColor: 'rgba(239, 68, 68, 0.08)',
+                  color: 'var(--color-error)',
+                  border: '1px solid rgba(239, 68, 68, 0.2)'
+                }}
+              >
                 {error}
               </div>
             )}
 
+            {/* Premium CTA */}
             {showPremium && (
-              <div className="sds-card animate-slide-in animate-slide-in-6">
-                <div className="sds-text-body-bold">{T.premiumTitle}</div>
-                <div className="mt-1 sds-text-body" style={{ color: 'var(--sds-text-secondary)' }}>{T.premiumDesc}</div>
+              <div className="rounded-lg p-var(--space-20)" style={{ backgroundColor: 'var(--accent-light)' }}>
+                <h3 className="mb-var(--space-8)">{T.premiumTitle}</h3>
+                <p className="mb-var(--space-16) text-small">{T.premiumDesc}</p>
                 <button
                   type="button"
                   onClick={() => void startPremium()}
-                  className="sds-btn sds-btn-primary mt-4 inline-flex h-11 items-center justify-center rounded-xl px-5 text-sm font-semibold shadow-lg transition-all duration-200 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-xl active:translate-y-px"
+                  className="btn btn-primary"
                 >
                   {T.premiumBtn}
                 </button>
               </div>
             )}
 
-            <div className="grid gap-2">
-              <div className="flex items-center justify-between">
-                <h2 className="sds-heading-3">{T.result}</h2>
-                <div className="text-xs" style={{ color: 'var(--sds-text-secondary)' }}>{DISCLAIMER}</div>
+            {/* Result display */}
+            <div>
+              <h2 className="mb-var(--space-12)">{T.result}</h2>
+              <div
+                className="rounded-lg p-var(--space-20) font-mono text-sm leading-relaxed"
+                style={{
+                  backgroundColor: 'var(--secondary-bg)',
+                  color: result ? 'var(--text-primary)' : 'var(--text-tertiary)',
+                  minHeight: '200px',
+                  whiteSpace: 'pre-wrap',
+                  wordBreak: 'break-word',
+                  border: '1px solid var(--tertiary-bg)'
+                }}
+              >
+                {result || T.emptyResult}
               </div>
-              <div className="min-h-[180px] whitespace-pre-wrap rounded-xl px-4 py-3 text-sm leading-6 shadow-sm" style={{
-                backgroundColor: 'var(--sds-surface-secondary)',
-                color: 'var(--sds-text-primary)',
-                border: '1px solid var(--sds-border-subtle)'
-              }}>
-                {result ? result : <span style={{ color: 'var(--sds-text-secondary)' }}>{T.emptyResult}</span>}
-              </div>
+              {result && (
+                <p className="mt-var(--space-12) text-small">{DISCLAIMER}</p>
+              )}
             </div>
           </section>
         </main>
 
-        <footer className="mt-10 text-xs leading-6" style={{ color: 'var(--sds-text-secondary)' }}>
-          <p>
-            {T.hint} {DISCLAIMER}
+        {/* Footer */}
+        <footer className="mt-var(--space-56) border-t border-tertiary-bg pt-var(--space-24) text-center">
+          <p className="text-small">
+            {T.hint}
           </p>
         </footer>
       </div>
     </div>
   );
+}
 }

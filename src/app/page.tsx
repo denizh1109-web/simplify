@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type TargetLanguage =
   | "Deutsch"
@@ -265,6 +265,8 @@ export default function Home() {
   const [remaining, setRemaining] = useState<number | null>(null);
   const [isPremium, setIsPremium] = useState<boolean>(false);
   const [showPremium, setShowPremium] = useState<boolean>(false);
+
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const uiDir = useMemo<"ltr" | "rtl">(() => {
     return LANGUAGES.find((l) => l.value === uiLanguage)?.dir ?? "ltr";
@@ -806,20 +808,29 @@ export default function Home() {
                   id="kk-file"
                   type="file"
                   className="sr-only"
-                  accept="application/pdf,text/plain,image/*"
+                  accept="application/pdf,.pdf,text/plain,.txt,image/*"
                   aria-describedby="kk-file-help kk-file-name"
+                  ref={fileInputRef}
                   onChange={(e) => {
                     const f = e.currentTarget.files?.[0] ?? null;
+                    if (!f) {
+                      setError(
+                        "Keine Datei übernommen. Tipp: Öffne das PDF in der Dateien-App und teile es erneut oder speichere es lokal (nicht nur Vorschau/iCloud)."
+                      );
+                      e.currentTarget.value = "";
+                      return;
+                    }
                     void handlePickFile(f);
                     e.currentTarget.value = "";
                   }}
                 />
-                <label
-                  htmlFor="kk-file"
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
                   className="inline-flex h-11 cursor-pointer items-center justify-center rounded-full bg-gov-blue px-5 text-sm font-semibold text-white shadow-lg shadow-gov-blue/20 transition-all duration-200 hover:bg-gov-blue/90 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-xl active:translate-y-px"
                 >
                   {T.pick}
-                </label>
+                </button>
 
                 <div id="kk-file-name" className="text-xs text-gov-brown" aria-live="polite">
                   {file ? (

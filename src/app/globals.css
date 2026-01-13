@@ -11,6 +11,18 @@
   --sds-accent-clay: #C7A18A;
   --sds-accent-rose: #C9A3A0;
   
+  /* Main SDS Variable Mapping */
+  --sds-surface-primary: #F6F4EF;
+  --sds-surface-primary-soft: #FAF8F5;
+  --sds-surface-secondary: #E9E2D6;
+  --sds-surface-tertiary: #DDD4C7;
+  --sds-text-primary: #3E3A36;
+  --sds-text-secondary: #7A7268;
+  --sds-border-subtle: #D6CEC2;
+  --sds-border-strong: #C9B8A8;
+  --sds-accent-clay-soft: #E8D4C8;
+  --sds-accent-rose-soft: #E8D0CC;
+  
   /* Derived Colors (Light Mode) */
   --sds-hover: #DFD8CC;
   --sds-active: #D0C5BB;
@@ -95,6 +107,16 @@
     --sds-text: #F6F4EF;
     --sds-text-secondary: #C9C2B8;
     --sds-divider: #3E3A36;
+    --sds-surface-primary: #1A1A18;
+    --sds-surface-primary-soft: #252522;
+    --sds-surface-secondary: #2A2A28;
+    --sds-surface-tertiary: #35312D;
+    --sds-text-primary: #F6F4EF;
+    --sds-text-secondary: #C9C2B8;
+    --sds-border-subtle: #3E3A36;
+    --sds-border-strong: #4A443B;
+    --sds-accent-clay-soft: #8B7F6F;
+    --sds-accent-rose-soft: #8B7F6F;
     --sds-hover: #35312D;
     --sds-active: #3E3A36;
     --sds-disabled: #4A443B;
@@ -258,7 +280,7 @@ html {
 
 /* SDS Text Elements */
 .sds-text {
-  color: var(--sds-text);
+  color: var(--sds-text-primary);
   font-family: var(--sds-font-ui);
 }
 
@@ -288,12 +310,57 @@ html {
   opacity: 0.8;
 }
 
+/* New SDS Text Utilities */
+.sds-text-body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--sds-text-primary);
+}
+
+.sds-text-body-lg {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--sds-text-primary);
+}
+
+.sds-text-body-bold {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--sds-text-primary);
+}
+
+.sds-text-sm-bold {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--sds-text-primary);
+}
+
 /* SDS Headings */
 .sds-heading {
   font-family: var(--sds-font-primary);
   font-weight: 700;
   margin: 0;
-  color: var(--sds-text);
+  color: var(--sds-text-primary);
+}
+
+.sds-heading-1 {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.15em;
+  color: var(--sds-text-primary);
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+}
+
+.sds-heading-3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--sds-text-primary);
 }
 
 .sds-heading--h1 {
@@ -330,8 +397,8 @@ html {
   
   border: none;
   border-radius: var(--sds-radius-md);
-  background-color: var(--sds-text);
-  color: var(--sds-bg);
+  background-color: var(--sds-text-primary);
+  color: var(--sds-surface-primary);
   
   cursor: pointer;
   transition: all var(--sds-duration-productive) var(--sds-ease-productive);
@@ -339,6 +406,17 @@ html {
   
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+.sds-btn-primary {
+  background-color: var(--sds-accent-clay);
+  color: white;
+}
+
+.sds-btn-primary:hover:not(:disabled) {
+  background-color: #B08A73;
+  box-shadow: var(--sds-shadow-md);
+  transform: translateY(-1px);
 }
 
 .sds-btn:hover:not(:disabled) {
@@ -386,12 +464,16 @@ html {
 
 /* SDS Card */
 .sds-card {
-  padding: var(--sds-space-lg);
-  background-color: var(--sds-surface);
-  border-radius: var(--sds-radius-lg);
-  border: 1px solid var(--sds-divider);
+  padding: 24px;
+  background-color: var(--sds-surface-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--sds-border-subtle);
   box-shadow: var(--sds-shadow-sm);
-  transition: all var(--sds-duration-productive) var(--sds-ease-productive);
+  transition: all 200ms cubic-bezier(0.25, 0.1, 0.25, 1.0);
+  p-6 sm:p-8;
+  flex-direction: column;
+  display: flex;
+  gap: 1rem;
 }
 
 .sds-card:hover {

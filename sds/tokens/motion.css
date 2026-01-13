@@ -1,0 +1,85 @@
+/**
+ * Simplify Design System - Motion & Animation Tokens
+ * Productive (200ms) for interactive states
+ * Expressive (500ms) for larger transitions
+ */
+
+:root {
+  /* Motion Durations */
+  --sds-motion-duration-productive: 200ms;
+  --sds-motion-duration-expressive: 500ms;
+  --sds-motion-duration-entrance: 300ms;
+  
+  /* Motion Easing Functions */
+  --sds-motion-ease-productive: cubic-bezier(0.25, 0.1, 0.25, 1.0);
+  --sds-motion-ease-expressive: cubic-bezier(0.4, 0.0, 0.2, 1.0);
+  --sds-motion-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Productive Motion Transitions */
+.sds-motion-productive {
+  transition-duration: var(--sds-motion-duration-productive);
+  transition-timing-function: var(--sds-motion-ease-productive);
+}
+
+/* Expressive Motion Transitions */
+.sds-motion-expressive {
+  transition-duration: var(--sds-motion-duration-expressive);
+  transition-timing-function: var(--sds-motion-ease-expressive);
+}
+
+/* Entrance Animations */
+@keyframes sds-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sds-slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sds-scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.sds-animate-fadeIn {
+  animation: sds-fadeIn var(--sds-motion-duration-productive) var(--sds-motion-ease-productive);
+}
+
+.sds-animate-slideUp {
+  animation: sds-slideUp var(--sds-motion-duration-productive) var(--sds-motion-ease-productive);
+}
+
+.sds-animate-scaleIn {
+  animation: sds-scaleIn var(--sds-motion-duration-productive) var(--sds-motion-ease-productive);
+}
+
+/* Respects prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .sds-motion-productive,
+  .sds-motion-expressive,
+  .sds-animate-fadeIn,
+  .sds-animate-slideUp,
+  .sds-animate-scaleIn {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

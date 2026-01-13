@@ -1,0 +1,105 @@
+/**
+ * Simplify Design System - Action Button Component
+ * Apple-style design with subtle depth and perfect accessibility
+ * Focus indicator: 2px solid clay accent
+ */
+
+.sds-button {
+  /* Base Styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sds-space-2);
+  padding: var(--sds-space-3) var(--sds-space-4);
+  
+  /* Typography */
+  font-family: var(--sds-font-family-secondary);
+  font-size: var(--sds-font-size-body-md);
+  font-weight: var(--sds-font-weight-semibold);
+  line-height: 1;
+  text-decoration: none;
+  
+  /* Visual Design */
+  border: none;
+  border-radius: var(--sds-radius-md);
+  background-color: var(--sds-color-interactive-default);
+  color: var(--sds-color-bg-primary);
+  box-shadow: var(--sds-shadow-sm);
+  
+  /* Interaction */
+  cursor: pointer;
+  transition: all var(--sds-motion-duration-productive) var(--sds-motion-ease-productive);
+  
+  /* Accessibility */
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hover State - Subtle elevation and color shift */
+.sds-button:hover:not(:disabled) {
+  background-color: var(--sds-color-interactive-hover);
+  box-shadow: var(--sds-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* Active/Press State */
+.sds-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--sds-shadow-sm);
+}
+
+/* Focus State - Visible outline for accessibility */
+.sds-button:focus-visible {
+  outline: var(--sds-focus-width) solid var(--sds-focus-color);
+  outline-offset: 2px;
+}
+
+/* Disabled State */
+.sds-button:disabled {
+  background-color: var(--sds-color-interactive-disabled);
+  color: var(--sds-color-text-secondary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Variant: Secondary (Ghost Button) */
+.sds-button--secondary {
+  background-color: transparent;
+  color: var(--sds-color-interactive-default);
+  border: 1px solid var(--sds-color-divider);
+  box-shadow: none;
+}
+
+.sds-button--secondary:hover:not(:disabled) {
+  background-color: var(--sds-color-surface-secondary);
+  border-color: var(--sds-color-interactive-default);
+}
+
+/* Variant: Small */
+.sds-button--sm {
+  padding: var(--sds-space-2) var(--sds-space-3);
+  font-size: var(--sds-font-size-body-sm);
+}
+
+/* Variant: Large */
+.sds-button--lg {
+  padding: var(--sds-space-4) var(--sds-space-6);
+  font-size: var(--sds-font-size-body-lg);
+}
+
+/* Icon Support */
+.sds-button__icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Respects prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .sds-button {
+    transition: none;
+  }
+  
+  .sds-button:hover:not(:disabled) {
+    transform: none;
+  }
+}

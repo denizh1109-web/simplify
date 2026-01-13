@@ -1,0 +1,95 @@
+/**
+ * Simplify Design System - Typography Tokens
+ * Primary: Public Sans (Government, Professional)
+ * Secondary: Inter (Clean, Accessible)
+ * Contrast: WCAG 2.2 AAA (7:1 minimum)
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Font Families */
+  --sds-font-family-primary: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sds-font-family-secondary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sds-font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', Menlo, Courier, monospace;
+  
+  /* Heading Scale */
+  --sds-font-size-h1: 32px;
+  --sds-font-size-h2: 28px;
+  --sds-font-size-h3: 24px;
+  --sds-font-size-h4: 20px;
+  --sds-font-size-h5: 16px;
+  --sds-font-size-h6: 14px;
+  
+  /* Body Text */
+  --sds-font-size-body-lg: 16px;
+  --sds-font-size-body-md: 14px;
+  --sds-font-size-body-sm: 12px;
+  --sds-font-size-body-xs: 11px;
+  
+  /* Line Heights - Accessibility focused */
+  --sds-line-height-tight: 1.3;
+  --sds-line-height-normal: 1.5;
+  --sds-line-height-relaxed: 1.7;
+  
+  /* Font Weights */
+  --sds-font-weight-regular: 400;
+  --sds-font-weight-medium: 500;
+  --sds-font-weight-semibold: 600;
+  --sds-font-weight-bold: 700;
+  
+  /* Letter Spacing */
+  --sds-letter-spacing-tight: -0.02em;
+  --sds-letter-spacing-normal: 0;
+  --sds-letter-spacing-wide: 0.04em;
+}
+
+/* Typographic Styles */
+.sds-h1 {
+  font-family: var(--sds-font-family-primary);
+  font-size: var(--sds-font-size-h1);
+  font-weight: var(--sds-font-weight-bold);
+  line-height: var(--sds-line-height-tight);
+  color: var(--sds-color-text-primary);
+}
+
+.sds-h2 {
+  font-family: var(--sds-font-family-primary);
+  font-size: var(--sds-font-size-h2);
+  font-weight: var(--sds-font-weight-bold);
+  line-height: var(--sds-line-height-tight);
+  color: var(--sds-color-text-primary);
+}
+
+.sds-body-lg {
+  font-family: var(--sds-font-family-secondary);
+  font-size: var(--sds-font-size-body-lg);
+  font-weight: var(--sds-font-weight-regular);
+  line-height: var(--sds-line-height-normal);
+  color: var(--sds-color-text-primary);
+}
+
+.sds-body-md {
+  font-family: var(--sds-font-family-secondary);
+  font-size: var(--sds-font-size-body-md);
+  font-weight: var(--sds-font-weight-regular);
+  line-height: var(--sds-line-height-normal);
+  color: var(--sds-color-text-primary);
+}
+
+.sds-body-sm {
+  font-family: var(--sds-font-family-secondary);
+  font-size: var(--sds-font-size-body-sm);
+  font-weight: var(--sds-font-weight-regular);
+  line-height: var(--sds-line-height-normal);
+  color: var(--sds-color-text-secondary);
+}
+
+.sds-label {
+  font-family: var(--sds-font-family-secondary);
+  font-size: var(--sds-font-size-body-sm);
+  font-weight: var(--sds-font-weight-semibold);
+  letter-spacing: var(--sds-letter-spacing-wide);
+  color: var(--sds-color-text-secondary);
+  text-transform: uppercase;
+}

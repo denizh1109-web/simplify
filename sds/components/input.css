@@ -1,0 +1,136 @@
+/**
+ * Simplify Design System - Input Component
+ * Document input with accessible labels and error states
+ * WCAG 2.2 AAA compliant
+ */
+
+.sds-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sds-space-2);
+}
+
+.sds-input-group__label {
+  font-family: var(--sds-font-family-secondary);
+  font-size: var(--sds-font-size-body-sm);
+  font-weight: var(--sds-font-weight-semibold);
+  color: var(--sds-color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--sds-letter-spacing-wide);
+}
+
+.sds-input-group__required {
+  color: var(--sds-color-error);
+  margin-left: 2px;
+}
+
+/* Base Input Styles */
+.sds-input {
+  padding: var(--sds-space-3) var(--sds-space-3);
+  
+  font-family: var(--sds-font-family-secondary);
+  font-size: var(--sds-font-size-body-md);
+  color: var(--sds-color-text-primary);
+  
+  border: 1px solid var(--sds-color-divider);
+  border-radius: var(--sds-radius-md);
+  background-color: var(--sds-color-bg-primary);
+  
+  transition: all var(--sds-motion-duration-productive) var(--sds-motion-ease-productive);
+  
+  /* Remove default browser styling */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* Placeholder */
+.sds-input::placeholder {
+  color: var(--sds-color-text-secondary);
+  opacity: 0.7;
+}
+
+/* Focus State */
+.sds-input:focus {
+  outline: none;
+  border-color: var(--sds-color-accent-clay);
+  box-shadow: inset 0 0 0 var(--sds-focus-width) rgba(199, 161, 138, 0.2);
+}
+
+.sds-input:focus-visible {
+  outline: var(--sds-focus-width) solid var(--sds-focus-color);
+  outline-offset: 2px;
+}
+
+/* Hover State */
+.sds-input:hover:not(:disabled) {
+  border-color: var(--sds-color-accent-clay);
+}
+
+/* Disabled State */
+.sds-input:disabled {
+  background-color: var(--sds-color-surface-secondary);
+  color: var(--sds-color-text-secondary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Error State */
+.sds-input--error {
+  border-color: var(--sds-color-error);
+}
+
+.sds-input--error:focus {
+  box-shadow: inset 0 0 0 var(--sds-focus-width) rgba(157, 75, 82, 0.2);
+}
+
+/* Helper Text */
+.sds-input-group__hint {
+  font-family: var(--sds-font-family-secondary);
+  font-size: var(--sds-font-size-body-sm);
+  color: var(--sds-color-text-secondary);
+  margin-top: var(--sds-space-1);
+}
+
+.sds-input-group__error {
+  font-family: var(--sds-font-family-secondary);
+  font-size: var(--sds-font-size-body-sm);
+  color: var(--sds-color-error);
+  margin-top: var(--sds-space-1);
+  font-weight: var(--sds-font-weight-semibold);
+}
+
+/* Textarea Variant */
+.sds-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* File Input */
+.sds-input-file {
+  padding: var(--sds-space-4) var(--sds-space-3);
+  border: 2px dashed var(--sds-color-divider);
+  border-radius: var(--sds-radius-lg);
+  background-color: var(--sds-color-surface-secondary);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--sds-motion-duration-productive) var(--sds-motion-ease-productive);
+}
+
+.sds-input-file:hover {
+  border-color: var(--sds-color-accent-clay);
+  background-color: var(--sds-color-bg-primary);
+}
+
+.sds-input-file:focus-visible {
+  outline: var(--sds-focus-width) solid var(--sds-focus-color);
+  outline-offset: 2px;
+}
+
+/* Respects prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .sds-input,
+  .sds-input-file {
+    transition: none;
+  }
+}

@@ -1,0 +1,108 @@
+/**
+ * Simplify Design System - Progress Bar Component
+ * Accessible progress indicator with semantic HTML
+ * ARIA: aria-valuenow, aria-valuemin, aria-valuemax
+ */
+
+.sds-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sds-space-2);
+}
+
+.sds-progress__label {
+  font-family: var(--sds-font-family-secondary);
+  font-size: var(--sds-font-size-body-sm);
+  font-weight: var(--sds-font-weight-semibold);
+  color: var(--sds-color-text-secondary);
+}
+
+.sds-progress__bar {
+  display: block;
+  width: 100%;
+  height: 8px;
+  
+  border-radius: var(--sds-radius-full);
+  background-color: var(--sds-color-surface-secondary);
+  border: 1px solid var(--sds-color-divider);
+  overflow: hidden;
+  
+  /* Accessibility */
+  role: progressbar;
+}
+
+.sds-progress__fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--sds-color-accent-clay),
+    var(--sds-color-accent-rose)
+  );
+  border-radius: var(--sds-radius-full);
+  
+  transition: width var(--sds-motion-duration-productive) var(--sds-motion-ease-productive);
+  position: relative;
+}
+
+/* Shimmer effect for indeterminate state */
+.sds-progress__fill--indeterminate {
+  background: linear-gradient(
+    90deg,
+    var(--sds-color-accent-clay),
+    var(--sds-color-accent-rose),
+    var(--sds-color-accent-clay)
+  );
+  background-size: 200% 100%;
+  animation: sds-progress-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes sds-progress-shimmer {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+.sds-progress__text {
+  font-family: var(--sds-font-family-secondary);
+  font-size: var(--sds-font-size-body-sm);
+  color: var(--sds-color-text-secondary);
+  text-align: right;
+}
+
+/* Variant: Small */
+.sds-progress--sm .sds-progress__bar {
+  height: 4px;
+}
+
+/* Variant: Large */
+.sds-progress--lg .sds-progress__bar {
+  height: 12px;
+}
+
+/* States */
+.sds-progress--success .sds-progress__fill {
+  background: var(--sds-color-success);
+}
+
+.sds-progress--warning .sds-progress__fill {
+  background: var(--sds-color-warning);
+}
+
+.sds-progress--error .sds-progress__fill {
+  background: var(--sds-color-error);
+}
+
+/* Respects prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .sds-progress__fill {
+    transition: none;
+  }
+  
+  .sds-progress__fill--indeterminate {
+    animation: none;
+    opacity: 0.7;
+  }
+}

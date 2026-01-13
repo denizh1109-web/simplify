@@ -1,0 +1,44 @@
+/**
+ * Simplify Design System - Spacing & Layout Tokens
+ * Based on 8px Spatial Grid (Comfortable for Accessibility)
+ */
+
+:root {
+  /* Spacing Scale - Multiples of 8px */
+  --sds-space-0: 0;
+  --sds-space-1: 4px;
+  --sds-space-2: 8px;
+  --sds-space-3: 12px;
+  --sds-space-4: 16px;
+  --sds-space-5: 20px;
+  --sds-space-6: 24px;
+  --sds-space-8: 32px;
+  --sds-space-10: 40px;
+  --sds-space-12: 48px;
+  --sds-space-16: 64px;
+  --sds-space-20: 80px;
+  
+  /* Border Radius - Apple-style subtle curves */
+  --sds-radius-xs: 4px;
+  --sds-radius-sm: 8px;
+  --sds-radius-md: 10px;
+  --sds-radius-lg: 12px;
+  --sds-radius-xl: 16px;
+  --sds-radius-full: 9999px;
+  
+  /* Depth & Shadows - Minimal, Accessibility-friendly */
+  --sds-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --sds-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --sds-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --sds-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  
+  /* Focus Indicators - Accessible, Visible */
+  --sds-focus-width: 2px;
+  --sds-focus-color: var(--sds-color-accent-clay);
+  --sds-focus-ring: inset 0 0 0 var(--sds-focus-width) var(--sds-focus-color);
+  
+  /* Breakpoints for Responsive Design */
+  --sds-breakpoint-mobile: 320px;
+  --sds-breakpoint-tablet: 768px;
+  --sds-breakpoint-desktop: 1024px;
+}

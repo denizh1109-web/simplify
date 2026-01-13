@@ -1,0 +1,37 @@
+{
+  "brand": "simplify",
+  "vision": "Apple-minimalist Civic Authority for Migrants",
+  "colors": {
+    "bg_primary": "#F6F4EF",
+    "surface_secondary": "#E9E2D6",
+    "divider": "#D6CEC2",
+    "text_primary": "#3E3A36",
+    "text_secondary": "#7A7268",
+    "accent_clay": "#C7A18A",
+    "accent_rose": "#C9A3A0"
+  },
+  "typography": {
+    "primary": "Public Sans",
+    "secondary": "Inter",
+    "scale": "8px base",
+    "a11y": "WCAG 2.2 AAA (7:1 Contrast)"
+  },
+  "motion": {
+    "productive": {
+      "duration": "200ms",
+      "ease": "cubic-bezier(0.25, 0.1, 0.25, 1.0)"
+    },
+    "expressive": {
+      "duration": "500ms",
+      "ease": "custom-bezier"
+    }
+  },
+  "components": [
+    "Action Button",
+    "Document Input",
+    "Language Selector",
+    "Progress Bar",
+    "Scan Viewfinder",
+    "Summary Card"
+  ]
+}

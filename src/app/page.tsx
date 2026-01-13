@@ -692,14 +692,14 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-app-bg text-foreground" dir={uiDir}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--sds-surface-primary)', color: 'var(--sds-text-primary)' }} dir={uiDir}>
       <a className="kk-skip-link" href="#main">
         Zum Inhalt
       </a>
 
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-24 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-gov-accent/12 blur-3xl" />
-        <div className="absolute -bottom-32 left-10 h-[360px] w-[360px] rounded-full bg-gov-brown/8 blur-3xl" />
+        <div className="absolute -top-24 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full blur-3xl" style={{ backgroundColor: 'var(--sds-accent-clay-soft)' }} />
+        <div className="absolute -bottom-32 left-10 h-[360px] w-[360px] rounded-full blur-3xl" style={{ backgroundColor: 'var(--sds-accent-rose-soft)' }} />
       </div>
 
       <div className="mx-auto w-full max-w-5xl px-5 py-8 sm:px-6 sm:py-12">
@@ -707,20 +707,19 @@ export default function Home() {
           <div className="px-1 py-2 text-center sm:px-2">
             <div className="flex items-center justify-center gap-3">
               <h1
-                className="relative z-0 inline-block text-5xl font-bold tracking-tight sm:text-7xl animate-text-shimmer"
-                style={{
-                  fontFamily: '"Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif',
-                  letterSpacing: "0.15em",
-                  fontWeight: 700,
-                }}
+                className="sds-heading-1 animate-text-shimmer"
               >
                 {T.title}
               </h1>
             </div>
-            <p className="relative z-20 mx-auto mt-3 max-w-2xl text-sm leading-6 text-gov-brown sm:mt-4">
+            <p className="sds-text-body-lg mx-auto mt-3 max-w-2xl sm:mt-4" style={{ color: 'var(--sds-text-secondary)' }}>
               {T.subtitle}
             </p>
-            <div className="mt-3 inline-flex rounded-full border border-border-subtle/30 bg-white/20 px-4 py-2 text-xs font-medium text-foreground backdrop-blur-sm">
+            <div className="mt-3 inline-flex rounded-full px-4 py-2 text-xs font-medium backdrop-blur-sm" style={{ 
+              backgroundColor: 'var(--sds-surface-tertiary)',
+              color: 'var(--sds-text-primary)',
+              border: '1px solid var(--sds-border-subtle)'
+            }}>
               {T.privacy}
             </div>
           </div>
@@ -728,20 +727,26 @@ export default function Home() {
 
         {progressPercent > 0 && (
           <div className="sticky top-3 z-10 mt-4">
-            <div className="-mx-5 rounded-2xl bg-app-bg/70 px-5 py-3 backdrop-blur-sm sm:-mx-6 sm:px-6">
+            <div className="-mx-5 rounded-2xl px-5 py-3 backdrop-blur-sm sm:-mx-6 sm:px-6" style={{
+              backgroundColor: 'var(--sds-surface-primary-soft)'
+            }}>
               <div
-                className="relative h-1.5 w-full overflow-hidden rounded-full bg-white/70 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.08)]"
+                className="relative h-1.5 w-full overflow-hidden rounded-full shadow-[inset_0_0_0_1px_rgba(0,0,0,0.08)]"
                 role="progressbar"
                 aria-valuemin={0}
                 aria-valuemax={100}
                 aria-valuenow={progressPercent}
                 aria-valuetext={`${progressPercent}%`}
+                style={{ backgroundColor: 'var(--sds-surface-secondary)' }}
               >
                 <div
-                  className="relative h-1.5 rounded-full bg-gov-blue motion-safe:transition-[width] motion-safe:duration-700 motion-safe:ease-out"
-                  style={{ width: `${progressPercent}%` }}
+                  className="relative h-1.5 rounded-full motion-safe:transition-[width] motion-safe:duration-700 motion-safe:ease-out"
+                  style={{ 
+                    width: `${progressPercent}%`,
+                    backgroundColor: 'var(--sds-accent-clay)'
+                  }}
                 >
-                  <div className="absolute right-0 top-1/2 h-5 w-8 -translate-y-1/2 bg-gov-blue/25 blur-md" />
+                  <div className="absolute right-0 top-1/2 h-5 w-8 -translate-y-1/2 blur-md" style={{ backgroundColor: 'var(--sds-accent-clay-soft)' }} />
                 </div>
               </div>
             </div>
@@ -749,32 +754,37 @@ export default function Home() {
         )}
 
         <section aria-label="Status" className="mt-4 grid gap-3 sm:grid-cols-3">
-          <div className="animate-slide-in animate-slide-in-1 rounded-2xl border border-border-subtle/30 bg-white/65 px-5 py-4 shadow-lg backdrop-blur-sm">
-            <div className="text-xs font-semibold text-gov-brown">{isPremium ? "Premium" : T.freeRemaining}</div>
-            <div className="mt-1 text-lg font-semibold tracking-tight text-foreground">
+          <div className="sds-card animate-slide-in animate-slide-in-1">
+            <div className="sds-text-sm-bold" style={{ color: 'var(--sds-text-secondary)' }}>{isPremium ? "Premium" : T.freeRemaining}</div>
+            <div className="sds-text-body-lg font-semibold tracking-tight mt-1">
               {isPremium ? "Aktiv" : remaining != null ? remaining : "—"}
             </div>
           </div>
-          <div className="animate-slide-in animate-slide-in-2 rounded-2xl border border-border-subtle/30 bg-white/65 px-5 py-4 shadow-lg backdrop-blur-sm">
-            <div className="text-xs font-semibold text-gov-brown">{T.language}</div>
-            <div className="mt-1 text-lg font-semibold tracking-tight text-foreground">
+          <div className="sds-card animate-slide-in animate-slide-in-2">
+            <div className="sds-text-sm-bold" style={{ color: 'var(--sds-text-secondary)' }}>{T.language}</div>
+            <div className="sds-text-body-lg font-semibold tracking-tight mt-1">
               {LANGUAGES.find((l) => l.value === targetLanguage)?.label ?? targetLanguage}
             </div>
           </div>
-          <div className="animate-slide-in animate-slide-in-3 rounded-2xl border border-border-subtle/30 bg-white/65 px-5 py-4 shadow-lg backdrop-blur-sm">
-            <div className="text-xs font-semibold text-gov-brown">Privacy</div>
-            <div className="mt-1 text-lg font-semibold tracking-tight text-foreground">Session only</div>
+          <div className="sds-card animate-slide-in animate-slide-in-3">
+            <div className="sds-text-sm-bold" style={{ color: 'var(--sds-text-secondary)' }}>Privacy</div>
+            <div className="sds-text-body-lg font-semibold tracking-tight mt-1">Session only</div>
           </div>
         </section>
 
         <main id="main" className="mt-6 grid gap-6">
           <section
             className={
-              "animate-slide-in animate-slide-in-4 rounded-3xl border border-border-subtle/30 bg-white/65 p-6 shadow-xl backdrop-blur-sm transition-all duration-200 sm:p-8 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-2xl " +
+              "sds-card animate-slide-in animate-slide-in-4 transition-all duration-200 motion-safe:hover:-translate-y-0.5 " +
               (isDragging
-                ? "border-gov-blue/60 ring-4 ring-gov-blue/10"
-                : "hover:border-gov-blue/40")
+                ? "ring-4"
+                : "hover:border-opacity-60")
             }
+            style={isDragging ? {
+              borderColor: 'var(--sds-accent-clay)',
+              backgroundColor: 'var(--sds-surface-primary-soft)',
+              boxShadow: '0 0 0 4px var(--sds-accent-clay-soft)'
+            } : {}}
             onDragEnter={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -801,11 +811,15 @@ export default function Home() {
             <div className="flex flex-col gap-5">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h2 className="text-base font-semibold text-foreground">{T.drop}</h2>
-                  <p className="mt-1 max-w-2xl text-sm leading-6 text-gov-brown">{T.orPick}</p>
+                  <h2 className="sds-heading-3">{T.drop}</h2>
+                  <p className="mt-1 max-w-2xl sds-text-body" style={{ color: 'var(--sds-text-secondary)' }}>{T.orPick}</p>
                 </div>
                 <div className="hidden sm:block">
-                  <div className="rounded-full border border-border-subtle bg-app-bg px-3 py-1 text-xs text-gov-brown">
+                  <div className="rounded-full px-3 py-1 text-xs" style={{
+                    backgroundColor: 'var(--sds-surface-tertiary)',
+                    color: 'var(--sds-text-secondary)',
+                    border: '1px solid var(--sds-border-subtle)'
+                  }}>
                     {T.types}
                   </div>
                 </div>
@@ -835,12 +849,12 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="inline-flex h-11 cursor-pointer items-center justify-center rounded-full bg-gov-blue px-5 text-sm font-semibold text-white shadow-lg shadow-gov-blue/20 transition-all duration-200 hover:bg-gov-blue/90 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-xl active:translate-y-px"
+                  className="sds-btn sds-btn-primary inline-flex h-11 cursor-pointer items-center justify-center rounded-full px-5 text-sm font-semibold shadow-lg transition-all duration-200 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-xl active:translate-y-px"
                 >
                   {T.pick}
                 </button>
 
-                <div id="kk-file-name" className="text-xs text-gov-brown" aria-live="polite">
+                <div id="kk-file-name" className="text-xs" style={{ color: 'var(--sds-text-secondary)' }} aria-live="polite">
                   {file ? (
                     <span>
                       {file.name} · {formatBytes(file.size)}
@@ -857,11 +871,16 @@ export default function Home() {
 
               {(isExtracting || sourceText) && (
                 <div
-                  className="mt-1 flex items-center gap-3 rounded-xl border border-border-subtle bg-app-bg px-4 py-3 text-sm text-gov-brown"
+                  className="mt-1 flex items-center gap-3 rounded-xl px-4 py-3 text-sm"
                   role="status"
                   aria-live="polite"
+                  style={{
+                    backgroundColor: 'var(--sds-surface-secondary)',
+                    color: 'var(--sds-text-secondary)',
+                    border: '1px solid var(--sds-border-subtle)'
+                  }}
                 >
-                  <div className="h-2 w-2 rounded-full bg-gov-accent motion-safe:animate-pulse" />
+                  <div className="h-2 w-2 rounded-full motion-safe:animate-pulse" style={{ backgroundColor: 'var(--sds-accent-clay)' }} />
                   <div className="flex-1">
                     {isExtracting
                       ? extractProgress != null
@@ -874,10 +893,10 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="animate-slide-in animate-slide-in-5 grid gap-4 rounded-3xl border border-border-subtle/30 bg-white/65 p-6 shadow-xl backdrop-blur-sm transition-all duration-200 sm:p-8 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-2xl">
+          <section className="sds-card animate-slide-in animate-slide-in-5 grid gap-4 transition-all duration-200 motion-safe:hover:-translate-y-0.5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <h2 className="text-base font-semibold text-foreground">{T.language}</h2>
-              <div className="text-xs font-medium text-gov-brown">
+              <h2 className="sds-heading-3">{T.language}</h2>
+              <div className="text-xs font-medium" style={{ color: 'var(--sds-text-secondary)' }}>
                 {isPremium
                   ? "Premium"
                   : remaining != null
@@ -888,10 +907,15 @@ export default function Home() {
             <div className="grid gap-4 sm:grid-cols-2 sm:items-end">
               <label className="grid gap-2">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-xs font-semibold text-gov-brown">{T.language}</span>
+                  <span className="text-xs font-semibold" style={{ color: 'var(--sds-text-secondary)' }}>{T.language}</span>
                   <button
                     type="button"
-                    className="inline-flex h-8 items-center justify-center rounded-full border border-border-subtle/30 bg-white/55 px-3 text-[11px] font-semibold text-foreground shadow-sm backdrop-blur-sm transition-all duration-200 hover:bg-white/70 hover:shadow-md motion-safe:hover:-translate-y-0.5 active:translate-y-px"
+                    className="inline-flex h-8 items-center justify-center rounded-full px-3 text-[11px] font-semibold transition-all duration-200 hover:shadow-md motion-safe:hover:-translate-y-0.5 active:translate-y-px"
+                    style={{
+                      backgroundColor: 'var(--sds-surface-secondary)',
+                      color: 'var(--sds-text-primary)',
+                      border: '1px solid var(--sds-border-subtle)'
+                    }}
                     onClick={() => {
                       setUiLanguage("Deutsch");
                       setTargetLanguage("Deutsch");
@@ -907,7 +931,13 @@ export default function Home() {
                     setTargetLanguage(v);
                     setUiLanguage(v);
                   }}
-                  className="h-11 w-full rounded-xl border border-border-subtle bg-white px-3 text-sm text-foreground shadow-sm outline-none transition focus:border-gov-accent/60 focus:ring-4 focus:ring-gov-accent/20"
+                  className="h-11 w-full rounded-xl px-3 text-sm shadow-sm outline-none transition focus:ring-4 active:translate-y-px"
+                  style={{
+                    backgroundColor: 'var(--sds-surface-secondary)',
+                    color: 'var(--sds-text-primary)',
+                    border: '1px solid var(--sds-border-subtle)',
+                    focusBorderColor: 'var(--sds-accent-clay)'
+                  }}
                 >
                   {LANGUAGES.map((l) => (
                     <option key={l.value} value={l.value}>
@@ -922,10 +952,10 @@ export default function Home() {
                 disabled={!canSimplify}
                 onClick={() => void onSimplify()}
                 className={
-                  "inline-flex h-11 items-center justify-center rounded-xl px-5 text-sm font-semibold shadow-lg transition-all duration-200 active:translate-y-px " +
+                  "sds-btn inline-flex h-11 items-center justify-center rounded-xl px-5 text-sm font-semibold shadow-lg transition-all duration-200 active:translate-y-px " +
                   (canSimplify
-                    ? "bg-gov-blue text-white hover:bg-gov-blue/90 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-xl"
-                    : "cursor-not-allowed bg-surface-2 text-gov-brown/70 shadow-sm")
+                    ? "sds-btn-primary motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-xl"
+                    : "cursor-not-allowed opacity-50")
                 }
               >
                 {isSimplifying ? T.simplifying : T.simplify}
@@ -933,19 +963,23 @@ export default function Home() {
             </div>
 
             {error && (
-              <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800" role="alert">
+              <div className="rounded-xl px-4 py-3 text-sm" role="alert" style={{
+                backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                color: '#991B1B',
+                border: '1px solid rgba(239, 68, 68, 0.2)'
+              }}>
                 {error}
               </div>
             )}
 
             {showPremium && (
-              <div className="animate-slide-in animate-slide-in-6 rounded-2xl border border-border-subtle/30 bg-white/65 p-5 shadow-sm backdrop-blur-sm">
-                <div className="text-sm font-semibold text-foreground">{T.premiumTitle}</div>
-                <div className="mt-1 text-sm leading-6 text-gov-brown">{T.premiumDesc}</div>
+              <div className="sds-card animate-slide-in animate-slide-in-6">
+                <div className="sds-text-body-bold">{T.premiumTitle}</div>
+                <div className="mt-1 sds-text-body" style={{ color: 'var(--sds-text-secondary)' }}>{T.premiumDesc}</div>
                 <button
                   type="button"
                   onClick={() => void startPremium()}
-                  className="mt-4 inline-flex h-11 items-center justify-center rounded-xl bg-gov-blue px-5 text-sm font-semibold text-white shadow-lg shadow-gov-blue/20 transition-all duration-200 hover:bg-gov-blue/90 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-xl active:translate-y-px"
+                  className="sds-btn sds-btn-primary mt-4 inline-flex h-11 items-center justify-center rounded-xl px-5 text-sm font-semibold shadow-lg transition-all duration-200 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-xl active:translate-y-px"
                 >
                   {T.premiumBtn}
                 </button>
@@ -954,17 +988,21 @@ export default function Home() {
 
             <div className="grid gap-2">
               <div className="flex items-center justify-between">
-                <h2 className="text-base font-semibold text-foreground">{T.result}</h2>
-                <div className="text-xs text-gov-brown">{DISCLAIMER}</div>
+                <h2 className="sds-heading-3">{T.result}</h2>
+                <div className="text-xs" style={{ color: 'var(--sds-text-secondary)' }}>{DISCLAIMER}</div>
               </div>
-              <div className="min-h-[180px] whitespace-pre-wrap rounded-xl border border-border-subtle bg-white px-4 py-3 text-sm leading-6 text-foreground shadow-sm">
-                {result ? result : <span className="text-gov-brown/70">{T.emptyResult}</span>}
+              <div className="min-h-[180px] whitespace-pre-wrap rounded-xl px-4 py-3 text-sm leading-6 shadow-sm" style={{
+                backgroundColor: 'var(--sds-surface-secondary)',
+                color: 'var(--sds-text-primary)',
+                border: '1px solid var(--sds-border-subtle)'
+              }}>
+                {result ? result : <span style={{ color: 'var(--sds-text-secondary)' }}>{T.emptyResult}</span>}
               </div>
             </div>
           </section>
         </main>
 
-        <footer className="mt-10 text-xs leading-6 text-gov-brown">
+        <footer className="mt-10 text-xs leading-6" style={{ color: 'var(--sds-text-secondary)' }}>
           <p>
             {T.hint} {DISCLAIMER}
           </p>
